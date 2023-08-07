@@ -1,36 +1,198 @@
-2023-07-24 18:45:40,917 [INFO] com.emp.management.system.EmpManagementSystemApplication [main] Starting EmpManagementSystemApplication using Java 19.0.2 with PID 18516 (C:\Users\alish\JAVA\STS Projects\Emp-Management-System\target\classes started by alish in C:\Users\alish\JAVA\STS Projects\Emp-Management-System)
-2023-07-24 18:45:40,919 [INFO] com.emp.management.system.EmpManagementSystemApplication [main] No active profile set, falling back to 1 default profile: "default"
-2023-07-24 18:45:41,554 [INFO] org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-07-24 18:45:41,617 [INFO] org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 53 ms. Found 3 JPA repository interfaces.
-2023-07-24 18:45:42,042 [INFO] org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8585 (http)
-2023-07-24 18:45:42,050 [INFO] org.apache.catalina.core.StandardService [main] Starting service [Tomcat]
-2023-07-24 18:45:42,051 [INFO] org.apache.catalina.core.StandardEngine [main] Starting Servlet engine: [Apache Tomcat/10.1.10]
-2023-07-24 18:45:42,218 [INFO] org.apache.jasper.servlet.TldScanner [main] At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
-2023-07-24 18:45:42,222 [INFO] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [main] Initializing Spring embedded WebApplicationContext
-2023-07-24 18:45:42,223 [INFO] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1258 ms
-2023-07-24 18:45:42,341 [INFO] com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
-2023-07-24 18:45:42,578 [INFO] com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@50085d9c
-2023-07-24 18:45:42,580 [INFO] com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
-2023-07-24 18:45:42,612 [INFO] org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
-2023-07-24 18:45:42,655 [INFO] org.hibernate.Version [main] HHH000412: Hibernate ORM core version 6.2.5.Final
-2023-07-24 18:45:42,656 [INFO] org.hibernate.cfg.Environment [main] HHH000406: Using bytecode reflection optimizer
-2023-07-24 18:45:42,772 [INFO] org.hibernate.bytecode.internal.BytecodeProviderInitiator [main] HHH000021: Bytecode provider name : bytebuddy
-2023-07-24 18:45:42,888 [INFO] org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
-2023-07-24 18:45:43,234 [INFO] org.hibernate.bytecode.internal.BytecodeProviderInitiator [main] HHH000021: Bytecode provider name : bytebuddy
-2023-07-24 18:45:43,839 [INFO] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2023-07-24 18:45:43,842 [INFO] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-07-24 18:45:44,053 [INFO] org.springframework.data.jpa.repository.query.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
-2023-07-24 18:45:44,450 [WARN] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-07-24 18:45:44,738 [INFO] org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8585 (http) with context path ''
-2023-07-24 18:45:44,749 [INFO] com.emp.management.system.EmpManagementSystemApplication [main] Started EmpManagementSystemApplication in 4.159 seconds (process running for 4.679)
-2023-07-24 18:45:51,456 [INFO] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [http-nio-8585-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
-2023-07-24 18:45:51,456 [INFO] org.springframework.web.servlet.DispatcherServlet [http-nio-8585-exec-1] Initializing Servlet 'dispatcherServlet'
-2023-07-24 18:45:51,457 [INFO] org.springframework.web.servlet.DispatcherServlet [http-nio-8585-exec-1] Completed initialization in 1 ms
-2023-07-24 18:45:51,493 [INFO] com.emp.management.system.utils.LoggingUtil [http-nio-8585-exec-1] Request received to get all employees
-2023-07-24 18:45:51,493 [INFO] com.emp.management.system.utils.LoggingUtil [http-nio-8585-exec-1] Fetching all employees
-2023-07-24 18:46:31,462 [INFO] org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin [RMI TCP Connection(4)-127.0.0.1] Application shutdown requested.
-2023-07-24 18:46:31,472 [INFO] org.apache.catalina.core.StandardService [RMI TCP Connection(4)-127.0.0.1] Stopping service [Tomcat]
-2023-07-24 18:46:31,473 [INFO] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [RMI TCP Connection(4)-127.0.0.1] Destroying Spring FrameworkServlet 'dispatcherServlet'
-2023-07-24 18:46:31,479 [INFO] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [RMI TCP Connection(4)-127.0.0.1] Closing JPA EntityManagerFactory for persistence unit 'default'
-2023-07-24 18:46:31,481 [INFO] com.zaxxer.hikari.HikariDataSource [RMI TCP Connection(4)-127.0.0.1] HikariPool-1 - Shutdown initiated...
-2023-07-24 18:46:31,494 [INFO] com.zaxxer.hikari.HikariDataSource [RMI TCP Connection(4)-127.0.0.1] HikariPool-1 - Shutdown completed.
+2023-08-07 10:18:40,644 [INFO] com.emp.management.system.EmpManagementSystemApplication [main] Starting EmpManagementSystemApplication using Java 19.0.2 with PID 8020 (C:\Users\alish\JAVA\STS Projects\Emp-Management-System\target\classes started by alish in C:\Users\alish\JAVA\STS Projects\Emp-Management-System)
+2023-08-07 10:18:40,648 [INFO] com.emp.management.system.EmpManagementSystemApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-08-07 10:18:41,291 [INFO] org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-08-07 10:18:41,347 [INFO] org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 49 ms. Found 3 JPA repository interfaces.
+2023-08-07 10:18:41,796 [INFO] org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8585 (http)
+2023-08-07 10:18:41,804 [INFO] org.apache.catalina.core.StandardService [main] Starting service [Tomcat]
+2023-08-07 10:18:41,805 [INFO] org.apache.catalina.core.StandardEngine [main] Starting Servlet engine: [Apache Tomcat/10.1.10]
+2023-08-07 10:18:41,992 [INFO] org.apache.jasper.servlet.TldScanner [main] At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2023-08-07 10:18:41,997 [INFO] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [main] Initializing Spring embedded WebApplicationContext
+2023-08-07 10:18:41,997 [INFO] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1294 ms
+2023-08-07 10:18:42,130 [INFO] com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2023-08-07 10:18:42,390 [INFO] com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@2e7af36e
+2023-08-07 10:18:42,393 [INFO] com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2023-08-07 10:18:42,424 [INFO] org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-08-07 10:18:42,464 [INFO] org.hibernate.Version [main] HHH000412: Hibernate ORM core version 6.2.5.Final
+2023-08-07 10:18:42,467 [INFO] org.hibernate.cfg.Environment [main] HHH000406: Using bytecode reflection optimizer
+2023-08-07 10:18:42,586 [INFO] org.hibernate.bytecode.internal.BytecodeProviderInitiator [main] HHH000021: Bytecode provider name : bytebuddy
+2023-08-07 10:18:42,698 [INFO] org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-08-07 10:18:43,162 [INFO] org.hibernate.bytecode.internal.BytecodeProviderInitiator [main] HHH000021: Bytecode provider name : bytebuddy
+2023-08-07 10:18:43,829 [INFO] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-08-07 10:18:43,832 [INFO] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-08-07 10:18:44,045 [INFO] org.springframework.data.jpa.repository.query.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
+2023-08-07 10:18:44,474 [WARN] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-08-07 10:18:44,781 [INFO] org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8585 (http) with context path ''
+2023-08-07 10:18:44,792 [INFO] com.emp.management.system.EmpManagementSystemApplication [main] Started EmpManagementSystemApplication in 4.471 seconds (process running for 4.95)
+2023-08-07 10:19:01,001 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-07 10:20:01,004 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-07 10:20:28,309 [INFO] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [http-nio-8585-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-08-07 10:20:28,310 [INFO] org.springframework.web.servlet.DispatcherServlet [http-nio-8585-exec-1] Initializing Servlet 'dispatcherServlet'
+2023-08-07 10:20:28,311 [INFO] org.springframework.web.servlet.DispatcherServlet [http-nio-8585-exec-1] Completed initialization in 1 ms
+2023-08-07 10:20:28,409 [INFO] com.emp.management.system.utils.LoggingUtil [http-nio-8585-exec-1] Checking Account History for employee with ID: 5
+2023-08-07 10:20:28,653 [ERROR] com.emp.management.system.utils.LoggingUtil [http-nio-8585-exec-1] Exception occurred while hitting account-history using RestTemplate: 405 : "{"timestamp":"2023-08-07T04:50:28.595+00:00","status":405,"error":"Method Not Allowed","path":"/BMS/account-history"}"
+2023-08-07 10:20:28,693 [WARN] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver [http-nio-8585-exec-1] Failure in @ExceptionHandler com.emp.management.system.exception.GlobalExceptionHandler#handleIllegalArgumentException(IllegalArgumentException)
+org.springframework.http.converter.HttpMessageConversionException: Type definition error: [simple type, class java.lang.Throwable]
+	at org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter.writeInternal(AbstractJackson2HttpMessageConverter.java:489)
+	at org.springframework.http.converter.AbstractGenericHttpMessageConverter.write(AbstractGenericHttpMessageConverter.java:103)
+	at org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor.writeWithMessageConverters(AbstractMessageConverterMethodProcessor.java:297)
+	at org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor.handleReturnValue(HttpEntityMethodProcessor.java:245)
+	at org.springframework.web.method.support.HandlerMethodReturnValueHandlerComposite.handleReturnValue(HandlerMethodReturnValueHandlerComposite.java:78)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:136)
+	at org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver.doResolveHandlerMethodException(ExceptionHandlerExceptionResolver.java:413)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodExceptionResolver.doResolveException(AbstractHandlerMethodExceptionResolver.java:74)
+	at org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver.resolveException(AbstractHandlerExceptionResolver.java:141)
+	at org.springframework.web.servlet.handler.HandlerExceptionResolverComposite.resolveException(HandlerExceptionResolverComposite.java:80)
+	at org.springframework.web.servlet.DispatcherServlet.processHandlerException(DispatcherServlet.java:1341)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1152)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1098)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1011)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:1589)
+Caused by: com.fasterxml.jackson.databind.exc.InvalidDefinitionException: Direct self-reference leading to cycle (through reference chain: com.emp.management.system.exception.Exception["throwable"]->org.springframework.web.client.HttpClientErrorException$MethodNotAllowed["mostSpecificCause"])
+	at com.fasterxml.jackson.databind.exc.InvalidDefinitionException.from(InvalidDefinitionException.java:77)
+	at com.fasterxml.jackson.databind.SerializerProvider.reportBadDefinition(SerializerProvider.java:1308)
+	at com.fasterxml.jackson.databind.ser.BeanPropertyWriter._handleSelfReference(BeanPropertyWriter.java:948)
+	at com.fasterxml.jackson.databind.ser.BeanPropertyWriter.serializeAsField(BeanPropertyWriter.java:726)
+	at com.fasterxml.jackson.databind.ser.std.BeanSerializerBase.serializeFields(BeanSerializerBase.java:772)
+	at com.fasterxml.jackson.databind.ser.BeanSerializer.serialize(BeanSerializer.java:178)
+	at com.fasterxml.jackson.databind.ser.BeanPropertyWriter.serializeAsField(BeanPropertyWriter.java:732)
+	at com.fasterxml.jackson.databind.ser.std.BeanSerializerBase.serializeFields(BeanSerializerBase.java:772)
+	at com.fasterxml.jackson.databind.ser.BeanSerializer.serialize(BeanSerializer.java:178)
+	at com.fasterxml.jackson.databind.ser.DefaultSerializerProvider._serialize(DefaultSerializerProvider.java:479)
+	at com.fasterxml.jackson.databind.ser.DefaultSerializerProvider.serializeValue(DefaultSerializerProvider.java:318)
+	at com.fasterxml.jackson.databind.ObjectWriter$Prefetch.serialize(ObjectWriter.java:1572)
+	at com.fasterxml.jackson.databind.ObjectWriter.writeValue(ObjectWriter.java:1061)
+	at org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter.writeInternal(AbstractJackson2HttpMessageConverter.java:483)
+	... 51 common frames omitted
+2023-08-07 10:20:28,697 [ERROR] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/].[dispatcherServlet] [http-nio-8585-exec-1] Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.IllegalArgumentException: Exception occurred while hitting account-history using RestTemplate] with root cause
+org.springframework.web.client.HttpClientErrorException$MethodNotAllowed: 405 : "{"timestamp":"2023-08-07T04:50:28.595+00:00","status":405,"error":"Method Not Allowed","path":"/BMS/account-history"}"
+	at org.springframework.web.client.HttpClientErrorException.create(HttpClientErrorException.java:115)
+	at org.springframework.web.client.DefaultResponseErrorHandler.handleError(DefaultResponseErrorHandler.java:183)
+	at org.springframework.web.client.DefaultResponseErrorHandler.handleError(DefaultResponseErrorHandler.java:137)
+	at org.springframework.web.client.ResponseErrorHandler.handleError(ResponseErrorHandler.java:63)
+	at org.springframework.web.client.RestTemplate.handleResponse(RestTemplate.java:915)
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:864)
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:764)
+	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:646)
+	at com.emp.management.system.service.EmployeeService.getTransactionDetails(EmployeeService.java:439)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:343)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:704)
+	at com.emp.management.system.service.EmployeeService$$SpringCGLIB$$0.getTransactionDetails(<generated>)
+	at com.emp.management.system.controller.EmployeeController.getAccountHistory(EmployeeController.java:159)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:343)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:756)
+	at org.springframework.validation.beanvalidation.MethodValidationInterceptor.invoke(MethodValidationInterceptor.java:141)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:756)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
+	at com.emp.management.system.controller.EmployeeController$$SpringCGLIB$$0.getAccountHistory(<generated>)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:207)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:152)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:884)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1081)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1011)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:1589)
+2023-08-07 10:21:01,004 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-07 10:22:01,010 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-07 10:23:01,007 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-07 10:24:01,004 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-07 10:25:01,005 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-07 10:26:01,002 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-07 10:27:01,003 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-07 10:28:01,004 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-07 10:29:01,007 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-07 10:30:01,008 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-07 10:31:01,003 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-07 10:32:01,002 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-07 10:33:01,005 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-07 10:34:01,015 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-07 10:35:01,008 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-07 10:36:02,582 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-07 10:37:01,004 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-07 10:38:01,014 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-07 10:39:01,005 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-07 10:40:01,011 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message

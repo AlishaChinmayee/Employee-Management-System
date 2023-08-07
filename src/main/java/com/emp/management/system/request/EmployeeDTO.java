@@ -3,10 +3,24 @@ package com.emp.management.system.request;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.ValidationException;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
+import com.emp.management.system.response.AccountHistoryResponse;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+//@JsonInclude(Include.NON_NULL)
 public class EmployeeDTO {
 	
 	    private Integer employeeId;
@@ -17,14 +31,26 @@ public class EmployeeDTO {
 	    private String emailId;
 	    @JsonIgnoreProperties(ignoreUnknown = true) // Ignore unknown properties during deserialization
 	    private List<PhoneNumberDTO> phoneNumbers;
+	    @JsonIgnoreProperties(ignoreUnknown = true) // Ignore unknown properties during deserialization
 	    private VoterIDDTO voterID;
 	    private LocalDateTime createdDateTime;
 	    private LocalDateTime updatedDateTime;
+	    private String accountNumber;
+	    private String accountType;
+	    private Double balance;
+	    
+	    
 		public Integer getEmployeeId() {
 			return employeeId;
 		}
 		public void setEmployeeId(Integer employeeId) {
 			this.employeeId = employeeId;
+		}
+		public String getAccountType() {
+			return accountType;
+		}
+		public void setAccountType(String accountType) {
+			this.accountType = accountType;
 		}
 		public String getName() {
 			return name;
@@ -83,12 +109,42 @@ public class EmployeeDTO {
 		public void setUpdatedDateTime(LocalDateTime updatedDateTime) {
 			this.updatedDateTime = updatedDateTime;
 		}
-	
 
-	    // Getters and setters
+		 public void validate() throws ValidationException {
+		        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+		        Validator validator = factory.getValidator();
+		        Set<ConstraintViolation<EmployeeDTO>> violations = validator.validate(this);
 
-	    // Additional methods if needed
-	}
+		        if (!violations.isEmpty()) {
+		            StringBuilder errorBuilder = new StringBuilder();
+		            for (ConstraintViolation<EmployeeDTO> violation : violations) {
+		                String fieldName = violation.getPropertyPath().toString();
+		                String errorMessage = violation.getMessage();
+		                errorBuilder.append(fieldName).append(": ").append(errorMessage).append("; ");
+		            }
+
+		            throw new ValidationException(errorBuilder.toString());
+		        }
+		    }
+		 
+		public String getAccountNumber() {
+			return accountNumber;
+		}
+		public void setAccountNumber(String accountNumber) {
+			this.accountNumber = accountNumber;
+		}
+		public Double getBalance() {
+			return balance;
+		}
+		public void setBalance(Double balance) {
+			this.balance = balance;
+		}
+		 
+
+		
+		
+		
+}
 
 
 

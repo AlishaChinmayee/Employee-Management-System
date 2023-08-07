@@ -17,6 +17,8 @@ public class EmployeeUpdateRequestDTO {
     private VoterIDDTO voterID;
     private LocalDateTime createdDateTime;
     private LocalDateTime updatedDateTime;
+    private Integer accountNumber;
+    private String accountType;
     
 	public EmployeeUpdateRequestDTO() {
 		super();
@@ -24,6 +26,14 @@ public class EmployeeUpdateRequestDTO {
 
 	public Integer getEmployeeId() {
 		return employeeId;
+	}
+
+	public String getAccountType() {
+		return accountType;
+	}
+
+	public void setAccountType(String accountType) {
+		this.accountType = accountType;
 	}
 
 	public void setEmployeeId(Integer employeeId) {
@@ -102,6 +112,16 @@ public class EmployeeUpdateRequestDTO {
 		this.updatedDateTime = updatedDateTime;
 	}
 
+	public Integer getAccountNumber() {
+		return accountNumber;
+	}
+
+	public void setAccountNumber(Integer accountNumber) {
+		this.accountNumber = accountNumber;
+	}
+
+	
+	
     // Getters and setters
 }
 
