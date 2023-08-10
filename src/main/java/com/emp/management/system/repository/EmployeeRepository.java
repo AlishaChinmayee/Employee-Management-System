@@ -18,7 +18,9 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
     Optional<Employee> findByIdWithDetails(@Param("employeeId") Integer employeeId);
 
     public List<Employee> findByManagerId(Integer managerId);
-
+    
+    Employee findByEmailId(String emailId);
+    
     @Query("SELECT e FROM Employee e WHERE e.salary > :salary")
     public List<Employee> findBySalaryGreaterThan(@Param("salary") BigDecimal salary);
 
@@ -28,7 +30,8 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
     @Query("SELECT e FROM Employee e WHERE e.employeeId = :employeeId")
     Employee findByEmployeeId(@Param("employeeId") Integer employeeId);
     
-    @Query("SELECT e FROM Employee e WHERE e.employeeId = :employeeId")
-    Optional<Employee> findByIdWithAccountDetails(@Param("employeeId") Integer employeeId);
-
+//    @Query("SELECT e FROM Employee e WHERE e.employeeId = :employeeId")
+//    Optional<Employee> findByIdWithAccountDetails(@Param("employeeId") Integer employeeId);
 }
+
+

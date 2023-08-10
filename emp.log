@@ -1,198 +1,456 @@
-2023-08-07 10:18:40,644 [INFO] com.emp.management.system.EmpManagementSystemApplication [main] Starting EmpManagementSystemApplication using Java 19.0.2 with PID 8020 (C:\Users\alish\JAVA\STS Projects\Emp-Management-System\target\classes started by alish in C:\Users\alish\JAVA\STS Projects\Emp-Management-System)
-2023-08-07 10:18:40,648 [INFO] com.emp.management.system.EmpManagementSystemApplication [main] No active profile set, falling back to 1 default profile: "default"
-2023-08-07 10:18:41,291 [INFO] org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-08-07 10:18:41,347 [INFO] org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 49 ms. Found 3 JPA repository interfaces.
-2023-08-07 10:18:41,796 [INFO] org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8585 (http)
-2023-08-07 10:18:41,804 [INFO] org.apache.catalina.core.StandardService [main] Starting service [Tomcat]
-2023-08-07 10:18:41,805 [INFO] org.apache.catalina.core.StandardEngine [main] Starting Servlet engine: [Apache Tomcat/10.1.10]
-2023-08-07 10:18:41,992 [INFO] org.apache.jasper.servlet.TldScanner [main] At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
-2023-08-07 10:18:41,997 [INFO] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [main] Initializing Spring embedded WebApplicationContext
-2023-08-07 10:18:41,997 [INFO] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1294 ms
-2023-08-07 10:18:42,130 [INFO] com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
-2023-08-07 10:18:42,390 [INFO] com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@2e7af36e
-2023-08-07 10:18:42,393 [INFO] com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
-2023-08-07 10:18:42,424 [INFO] org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
-2023-08-07 10:18:42,464 [INFO] org.hibernate.Version [main] HHH000412: Hibernate ORM core version 6.2.5.Final
-2023-08-07 10:18:42,467 [INFO] org.hibernate.cfg.Environment [main] HHH000406: Using bytecode reflection optimizer
-2023-08-07 10:18:42,586 [INFO] org.hibernate.bytecode.internal.BytecodeProviderInitiator [main] HHH000021: Bytecode provider name : bytebuddy
-2023-08-07 10:18:42,698 [INFO] org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
-2023-08-07 10:18:43,162 [INFO] org.hibernate.bytecode.internal.BytecodeProviderInitiator [main] HHH000021: Bytecode provider name : bytebuddy
-2023-08-07 10:18:43,829 [INFO] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2023-08-07 10:18:43,832 [INFO] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-08-07 10:18:44,045 [INFO] org.springframework.data.jpa.repository.query.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
-2023-08-07 10:18:44,474 [WARN] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-08-07 10:18:44,781 [INFO] org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8585 (http) with context path ''
-2023-08-07 10:18:44,792 [INFO] com.emp.management.system.EmpManagementSystemApplication [main] Started EmpManagementSystemApplication in 4.471 seconds (process running for 4.95)
-2023-08-07 10:19:01,001 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
-2023-08-07 10:20:01,004 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
-2023-08-07 10:20:28,309 [INFO] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [http-nio-8585-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
-2023-08-07 10:20:28,310 [INFO] org.springframework.web.servlet.DispatcherServlet [http-nio-8585-exec-1] Initializing Servlet 'dispatcherServlet'
-2023-08-07 10:20:28,311 [INFO] org.springframework.web.servlet.DispatcherServlet [http-nio-8585-exec-1] Completed initialization in 1 ms
-2023-08-07 10:20:28,409 [INFO] com.emp.management.system.utils.LoggingUtil [http-nio-8585-exec-1] Checking Account History for employee with ID: 5
-2023-08-07 10:20:28,653 [ERROR] com.emp.management.system.utils.LoggingUtil [http-nio-8585-exec-1] Exception occurred while hitting account-history using RestTemplate: 405 : "{"timestamp":"2023-08-07T04:50:28.595+00:00","status":405,"error":"Method Not Allowed","path":"/BMS/account-history"}"
-2023-08-07 10:20:28,693 [WARN] org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver [http-nio-8585-exec-1] Failure in @ExceptionHandler com.emp.management.system.exception.GlobalExceptionHandler#handleIllegalArgumentException(IllegalArgumentException)
-org.springframework.http.converter.HttpMessageConversionException: Type definition error: [simple type, class java.lang.Throwable]
-	at org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter.writeInternal(AbstractJackson2HttpMessageConverter.java:489)
-	at org.springframework.http.converter.AbstractGenericHttpMessageConverter.write(AbstractGenericHttpMessageConverter.java:103)
-	at org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor.writeWithMessageConverters(AbstractMessageConverterMethodProcessor.java:297)
-	at org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor.handleReturnValue(HttpEntityMethodProcessor.java:245)
-	at org.springframework.web.method.support.HandlerMethodReturnValueHandlerComposite.handleReturnValue(HandlerMethodReturnValueHandlerComposite.java:78)
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:136)
-	at org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver.doResolveHandlerMethodException(ExceptionHandlerExceptionResolver.java:413)
-	at org.springframework.web.servlet.handler.AbstractHandlerMethodExceptionResolver.doResolveException(AbstractHandlerMethodExceptionResolver.java:74)
-	at org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver.resolveException(AbstractHandlerExceptionResolver.java:141)
-	at org.springframework.web.servlet.handler.HandlerExceptionResolverComposite.resolveException(HandlerExceptionResolverComposite.java:80)
-	at org.springframework.web.servlet.DispatcherServlet.processHandlerException(DispatcherServlet.java:1341)
-	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1152)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1098)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1011)
-	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
-	at java.base/java.lang.Thread.run(Thread.java:1589)
-Caused by: com.fasterxml.jackson.databind.exc.InvalidDefinitionException: Direct self-reference leading to cycle (through reference chain: com.emp.management.system.exception.Exception["throwable"]->org.springframework.web.client.HttpClientErrorException$MethodNotAllowed["mostSpecificCause"])
-	at com.fasterxml.jackson.databind.exc.InvalidDefinitionException.from(InvalidDefinitionException.java:77)
-	at com.fasterxml.jackson.databind.SerializerProvider.reportBadDefinition(SerializerProvider.java:1308)
-	at com.fasterxml.jackson.databind.ser.BeanPropertyWriter._handleSelfReference(BeanPropertyWriter.java:948)
-	at com.fasterxml.jackson.databind.ser.BeanPropertyWriter.serializeAsField(BeanPropertyWriter.java:726)
-	at com.fasterxml.jackson.databind.ser.std.BeanSerializerBase.serializeFields(BeanSerializerBase.java:772)
-	at com.fasterxml.jackson.databind.ser.BeanSerializer.serialize(BeanSerializer.java:178)
-	at com.fasterxml.jackson.databind.ser.BeanPropertyWriter.serializeAsField(BeanPropertyWriter.java:732)
-	at com.fasterxml.jackson.databind.ser.std.BeanSerializerBase.serializeFields(BeanSerializerBase.java:772)
-	at com.fasterxml.jackson.databind.ser.BeanSerializer.serialize(BeanSerializer.java:178)
-	at com.fasterxml.jackson.databind.ser.DefaultSerializerProvider._serialize(DefaultSerializerProvider.java:479)
-	at com.fasterxml.jackson.databind.ser.DefaultSerializerProvider.serializeValue(DefaultSerializerProvider.java:318)
-	at com.fasterxml.jackson.databind.ObjectWriter$Prefetch.serialize(ObjectWriter.java:1572)
-	at com.fasterxml.jackson.databind.ObjectWriter.writeValue(ObjectWriter.java:1061)
-	at org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter.writeInternal(AbstractJackson2HttpMessageConverter.java:483)
-	... 51 common frames omitted
-2023-08-07 10:20:28,697 [ERROR] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/].[dispatcherServlet] [http-nio-8585-exec-1] Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.IllegalArgumentException: Exception occurred while hitting account-history using RestTemplate] with root cause
-org.springframework.web.client.HttpClientErrorException$MethodNotAllowed: 405 : "{"timestamp":"2023-08-07T04:50:28.595+00:00","status":405,"error":"Method Not Allowed","path":"/BMS/account-history"}"
-	at org.springframework.web.client.HttpClientErrorException.create(HttpClientErrorException.java:115)
-	at org.springframework.web.client.DefaultResponseErrorHandler.handleError(DefaultResponseErrorHandler.java:183)
-	at org.springframework.web.client.DefaultResponseErrorHandler.handleError(DefaultResponseErrorHandler.java:137)
-	at org.springframework.web.client.ResponseErrorHandler.handleError(ResponseErrorHandler.java:63)
-	at org.springframework.web.client.RestTemplate.handleResponse(RestTemplate.java:915)
-	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:864)
-	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:764)
-	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:646)
-	at com.emp.management.system.service.EmployeeService.getTransactionDetails(EmployeeService.java:439)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
-	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:343)
-	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:704)
-	at com.emp.management.system.service.EmployeeService$$SpringCGLIB$$0.getTransactionDetails(<generated>)
-	at com.emp.management.system.controller.EmployeeController.getAccountHistory(EmployeeController.java:159)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
-	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:343)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:756)
-	at org.springframework.validation.beanvalidation.MethodValidationInterceptor.invoke(MethodValidationInterceptor.java:141)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:756)
-	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
-	at com.emp.management.system.controller.EmployeeController$$SpringCGLIB$$0.getAccountHistory(<generated>)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:207)
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:152)
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:884)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797)
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1081)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1011)
-	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
-	at java.base/java.lang.Thread.run(Thread.java:1589)
-2023-08-07 10:21:01,004 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
-2023-08-07 10:22:01,010 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
-2023-08-07 10:23:01,007 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
-2023-08-07 10:24:01,004 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
-2023-08-07 10:25:01,005 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
-2023-08-07 10:26:01,002 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
-2023-08-07 10:27:01,003 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
-2023-08-07 10:28:01,004 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
-2023-08-07 10:29:01,007 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
-2023-08-07 10:30:01,008 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
-2023-08-07 10:31:01,003 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
-2023-08-07 10:32:01,002 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
-2023-08-07 10:33:01,005 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
-2023-08-07 10:34:01,015 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
-2023-08-07 10:35:01,008 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
-2023-08-07 10:36:02,582 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
-2023-08-07 10:37:01,004 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
-2023-08-07 10:38:01,014 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
-2023-08-07 10:39:01,005 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
-2023-08-07 10:40:01,011 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-10 11:58:45,402 [INFO] com.emp.management.system.EmpManagementSystemApplication [main] Starting EmpManagementSystemApplication using Java 19.0.2 with PID 13124 (C:\Users\alish\JAVA\STS Projects\Emp-Management-System\target\classes started by alish in C:\Users\alish\JAVA\STS Projects\Emp-Management-System)
+2023-08-10 11:58:45,406 [INFO] com.emp.management.system.EmpManagementSystemApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-08-10 11:58:46,120 [INFO] org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-08-10 11:58:46,181 [INFO] org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 53 ms. Found 3 JPA repository interfaces.
+2023-08-10 11:58:46,592 [INFO] org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8585 (http)
+2023-08-10 11:58:46,601 [INFO] org.apache.catalina.core.StandardService [main] Starting service [Tomcat]
+2023-08-10 11:58:46,601 [INFO] org.apache.catalina.core.StandardEngine [main] Starting Servlet engine: [Apache Tomcat/10.1.10]
+2023-08-10 11:58:46,788 [INFO] org.apache.jasper.servlet.TldScanner [main] At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2023-08-10 11:58:46,792 [INFO] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [main] Initializing Spring embedded WebApplicationContext
+2023-08-10 11:58:46,793 [INFO] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1333 ms
+2023-08-10 11:58:46,915 [INFO] com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2023-08-10 11:58:47,151 [INFO] com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@4a058df8
+2023-08-10 11:58:47,153 [INFO] com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2023-08-10 11:58:47,185 [INFO] org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-08-10 11:58:47,225 [INFO] org.hibernate.Version [main] HHH000412: Hibernate ORM core version 6.2.5.Final
+2023-08-10 11:58:47,228 [INFO] org.hibernate.cfg.Environment [main] HHH000406: Using bytecode reflection optimizer
+2023-08-10 11:58:47,344 [INFO] org.hibernate.bytecode.internal.BytecodeProviderInitiator [main] HHH000021: Bytecode provider name : bytebuddy
+2023-08-10 11:58:47,458 [INFO] org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-08-10 11:58:47,827 [INFO] org.hibernate.bytecode.internal.BytecodeProviderInitiator [main] HHH000021: Bytecode provider name : bytebuddy
+2023-08-10 11:58:48,416 [INFO] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-08-10 11:58:48,418 [INFO] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-08-10 11:58:48,627 [INFO] org.springframework.data.jpa.repository.query.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
+2023-08-10 11:58:49,038 [WARN] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-08-10 11:58:49,322 [INFO] org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8585 (http) with context path ''
+2023-08-10 11:58:49,333 [INFO] com.emp.management.system.EmpManagementSystemApplication [main] Started EmpManagementSystemApplication in 4.254 seconds (process running for 4.756)
+2023-08-10 11:59:01,008 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-10 12:00:01,002 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-10 12:01:00,999 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-10 12:02:01,000 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-10 12:03:01,000 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-10 12:04:01,006 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-10 12:05:01,009 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-10 12:05:20,024 [INFO] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [http-nio-8585-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-08-10 12:05:20,025 [INFO] org.springframework.web.servlet.DispatcherServlet [http-nio-8585-exec-2] Initializing Servlet 'dispatcherServlet'
+2023-08-10 12:05:20,026 [INFO] org.springframework.web.servlet.DispatcherServlet [http-nio-8585-exec-2] Completed initialization in 1 ms
+2023-08-10 12:05:20,143 [INFO] com.emp.management.system.utils.LoggingUtil [http-nio-8585-exec-2] Received request for employee ID: 16
+2023-08-10 12:05:20,145 [ERROR] com.emp.management.system.utils.LoggingUtil [http-nio-8585-exec-2] Error processing request for employee ID: 16
+2023-08-10 12:05:45,823 [INFO] com.emp.management.system.utils.LoggingUtil [http-nio-8585-exec-4] Received request for employee ID: 16
+2023-08-10 12:05:45,824 [INFO] com.emp.management.system.utils.LoggingUtil [http-nio-8585-exec-4] Fetching transaction details for employee ID: 16
+2023-08-10 12:05:45,842 [INFO] com.emp.management.system.utils.LoggingUtil [http-nio-8585-exec-4] Hitting account-history API for employee ID: 16
+2023-08-10 12:05:46,392 [INFO] com.emp.management.system.utils.LoggingUtil [http-nio-8585-exec-4] Retrieved Account History for employee with ID: 16
+2023-08-10 12:05:46,392 [INFO] com.emp.management.system.utils.LoggingUtil [http-nio-8585-exec-4] Account history retrieved successfully for employee ID: 16
+2023-08-10 12:05:51,285 [INFO] com.emp.management.system.utils.LoggingUtil [http-nio-8585-exec-5] Received request for employee ID: 16
+2023-08-10 12:05:51,286 [ERROR] com.emp.management.system.utils.LoggingUtil [http-nio-8585-exec-5] Error processing request for employee ID: 16
+2023-08-10 12:06:01,000 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-10 12:07:01,002 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-10 12:07:01,644 [INFO] org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin [RMI TCP Connection(11)-127.0.0.1] Application shutdown requested.
+2023-08-10 12:07:01,658 [INFO] org.apache.catalina.core.StandardService [RMI TCP Connection(11)-127.0.0.1] Stopping service [Tomcat]
+2023-08-10 12:07:01,661 [INFO] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [RMI TCP Connection(11)-127.0.0.1] Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-08-10 12:07:01,670 [INFO] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [RMI TCP Connection(11)-127.0.0.1] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-08-10 12:07:01,673 [INFO] com.zaxxer.hikari.HikariDataSource [RMI TCP Connection(11)-127.0.0.1] HikariPool-1 - Shutdown initiated...
+2023-08-10 12:07:01,693 [INFO] com.zaxxer.hikari.HikariDataSource [RMI TCP Connection(11)-127.0.0.1] HikariPool-1 - Shutdown completed.
+2023-08-10 12:07:06,167 [INFO] com.emp.management.system.EmpManagementSystemApplication [main] Starting EmpManagementSystemApplication using Java 19.0.2 with PID 13376 (C:\Users\alish\JAVA\STS Projects\Emp-Management-System\target\classes started by alish in C:\Users\alish\JAVA\STS Projects\Emp-Management-System)
+2023-08-10 12:07:06,168 [INFO] com.emp.management.system.EmpManagementSystemApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-08-10 12:07:06,766 [INFO] org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-08-10 12:07:06,825 [INFO] org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 52 ms. Found 3 JPA repository interfaces.
+2023-08-10 12:07:07,282 [INFO] org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8585 (http)
+2023-08-10 12:07:07,292 [INFO] org.apache.catalina.core.StandardService [main] Starting service [Tomcat]
+2023-08-10 12:07:07,292 [INFO] org.apache.catalina.core.StandardEngine [main] Starting Servlet engine: [Apache Tomcat/10.1.10]
+2023-08-10 12:07:07,481 [INFO] org.apache.jasper.servlet.TldScanner [main] At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2023-08-10 12:07:07,486 [INFO] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [main] Initializing Spring embedded WebApplicationContext
+2023-08-10 12:07:07,486 [INFO] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1259 ms
+2023-08-10 12:07:07,610 [INFO] com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2023-08-10 12:07:07,991 [INFO] com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@171dc7c3
+2023-08-10 12:07:07,993 [INFO] com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2023-08-10 12:07:08,029 [INFO] org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-08-10 12:07:08,072 [INFO] org.hibernate.Version [main] HHH000412: Hibernate ORM core version 6.2.5.Final
+2023-08-10 12:07:08,075 [INFO] org.hibernate.cfg.Environment [main] HHH000406: Using bytecode reflection optimizer
+2023-08-10 12:07:08,196 [INFO] org.hibernate.bytecode.internal.BytecodeProviderInitiator [main] HHH000021: Bytecode provider name : bytebuddy
+2023-08-10 12:07:08,332 [INFO] org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-08-10 12:07:08,711 [INFO] org.hibernate.bytecode.internal.BytecodeProviderInitiator [main] HHH000021: Bytecode provider name : bytebuddy
+2023-08-10 12:07:09,329 [INFO] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-08-10 12:07:09,332 [INFO] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-08-10 12:07:09,543 [INFO] org.springframework.data.jpa.repository.query.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
+2023-08-10 12:07:09,967 [WARN] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-08-10 12:07:10,266 [INFO] org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8585 (http) with context path ''
+2023-08-10 12:07:10,278 [INFO] com.emp.management.system.EmpManagementSystemApplication [main] Started EmpManagementSystemApplication in 4.536 seconds (process running for 5.428)
+2023-08-10 12:07:13,824 [INFO] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [http-nio-8585-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-08-10 12:07:13,824 [INFO] org.springframework.web.servlet.DispatcherServlet [http-nio-8585-exec-1] Initializing Servlet 'dispatcherServlet'
+2023-08-10 12:07:13,825 [INFO] org.springframework.web.servlet.DispatcherServlet [http-nio-8585-exec-1] Completed initialization in 1 ms
+2023-08-10 12:07:13,928 [INFO] com.emp.management.system.utils.LoggingUtil [http-nio-8585-exec-1] Received request for employee ID: 16
+2023-08-10 12:07:13,928 [ERROR] com.emp.management.system.utils.LoggingUtil [http-nio-8585-exec-1] Error processing request for employee ID: 16
+2023-08-10 12:08:01,000 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-10 12:08:43,747 [INFO] org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin [RMI TCP Connection(4)-127.0.0.1] Application shutdown requested.
+2023-08-10 12:08:43,761 [INFO] org.apache.catalina.core.StandardService [RMI TCP Connection(4)-127.0.0.1] Stopping service [Tomcat]
+2023-08-10 12:08:43,763 [INFO] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [RMI TCP Connection(4)-127.0.0.1] Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-08-10 12:08:43,772 [INFO] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [RMI TCP Connection(4)-127.0.0.1] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-08-10 12:08:43,775 [INFO] com.zaxxer.hikari.HikariDataSource [RMI TCP Connection(4)-127.0.0.1] HikariPool-1 - Shutdown initiated...
+2023-08-10 12:08:43,803 [INFO] com.zaxxer.hikari.HikariDataSource [RMI TCP Connection(4)-127.0.0.1] HikariPool-1 - Shutdown completed.
+2023-08-10 12:08:47,185 [INFO] com.emp.management.system.EmpManagementSystemApplication [main] Starting EmpManagementSystemApplication using Java 19.0.2 with PID 1400 (C:\Users\alish\JAVA\STS Projects\Emp-Management-System\target\classes started by alish in C:\Users\alish\JAVA\STS Projects\Emp-Management-System)
+2023-08-10 12:08:47,187 [INFO] com.emp.management.system.EmpManagementSystemApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-08-10 12:08:47,705 [INFO] org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-08-10 12:08:47,759 [INFO] org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 46 ms. Found 3 JPA repository interfaces.
+2023-08-10 12:08:48,166 [INFO] org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8585 (http)
+2023-08-10 12:08:48,174 [INFO] org.apache.catalina.core.StandardService [main] Starting service [Tomcat]
+2023-08-10 12:08:48,174 [INFO] org.apache.catalina.core.StandardEngine [main] Starting Servlet engine: [Apache Tomcat/10.1.10]
+2023-08-10 12:08:48,339 [INFO] org.apache.jasper.servlet.TldScanner [main] At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2023-08-10 12:08:48,343 [INFO] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [main] Initializing Spring embedded WebApplicationContext
+2023-08-10 12:08:48,343 [INFO] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1113 ms
+2023-08-10 12:08:48,465 [INFO] com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2023-08-10 12:08:48,694 [INFO] com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@2c1f8dbd
+2023-08-10 12:08:48,696 [INFO] com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2023-08-10 12:08:48,727 [INFO] org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-08-10 12:08:48,767 [INFO] org.hibernate.Version [main] HHH000412: Hibernate ORM core version 6.2.5.Final
+2023-08-10 12:08:48,770 [INFO] org.hibernate.cfg.Environment [main] HHH000406: Using bytecode reflection optimizer
+2023-08-10 12:08:48,915 [INFO] org.hibernate.bytecode.internal.BytecodeProviderInitiator [main] HHH000021: Bytecode provider name : bytebuddy
+2023-08-10 12:08:49,033 [INFO] org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-08-10 12:08:49,383 [INFO] org.hibernate.bytecode.internal.BytecodeProviderInitiator [main] HHH000021: Bytecode provider name : bytebuddy
+2023-08-10 12:08:50,020 [INFO] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-08-10 12:08:50,023 [INFO] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-08-10 12:08:50,246 [INFO] org.springframework.data.jpa.repository.query.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
+2023-08-10 12:08:50,691 [WARN] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-08-10 12:08:50,997 [INFO] org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8585 (http) with context path ''
+2023-08-10 12:08:51,008 [INFO] com.emp.management.system.EmpManagementSystemApplication [main] Started EmpManagementSystemApplication in 4.191 seconds (process running for 4.858)
+2023-08-10 12:08:53,411 [INFO] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [http-nio-8585-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-08-10 12:08:53,411 [INFO] org.springframework.web.servlet.DispatcherServlet [http-nio-8585-exec-2] Initializing Servlet 'dispatcherServlet'
+2023-08-10 12:08:53,412 [INFO] org.springframework.web.servlet.DispatcherServlet [http-nio-8585-exec-2] Completed initialization in 1 ms
+2023-08-10 12:08:53,507 [INFO] com.emp.management.system.utils.LoggingUtil [http-nio-8585-exec-2] Received request for employee ID: 16
+2023-08-10 12:08:53,507 [ERROR] com.emp.management.system.utils.LoggingUtil [http-nio-8585-exec-2] Error processing request for employee ID: 16
+2023-08-10 12:09:01,000 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-10 12:09:16,076 [INFO] com.emp.management.system.utils.LoggingUtil [http-nio-8585-exec-4] Received request for employee ID: 16
+2023-08-10 12:09:16,078 [ERROR] com.emp.management.system.utils.LoggingUtil [http-nio-8585-exec-4] Error processing request for employee ID: 16
+2023-08-10 12:09:21,905 [INFO] com.emp.management.system.utils.LoggingUtil [http-nio-8585-exec-6] Received request for employee ID: 16
+2023-08-10 12:09:21,905 [ERROR] com.emp.management.system.utils.LoggingUtil [http-nio-8585-exec-6] Invalid date range provided for employee ID: 16
+2023-08-10 12:09:34,357 [INFO] com.emp.management.system.utils.LoggingUtil [http-nio-8585-exec-8] Received request for employee ID: 16
+2023-08-10 12:09:34,357 [ERROR] com.emp.management.system.utils.LoggingUtil [http-nio-8585-exec-8] Error processing request for employee ID: 16
+2023-08-10 12:09:45,142 [INFO] com.emp.management.system.utils.LoggingUtil [http-nio-8585-exec-9] Received request for employee ID: 16
+2023-08-10 12:09:45,143 [ERROR] com.emp.management.system.utils.LoggingUtil [http-nio-8585-exec-9] Error processing request for employee ID: 16
+2023-08-10 12:10:01,002 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-10 12:10:26,047 [INFO] org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin [RMI TCP Connection(5)-127.0.0.1] Application shutdown requested.
+2023-08-10 12:10:26,059 [INFO] org.apache.catalina.core.StandardService [RMI TCP Connection(5)-127.0.0.1] Stopping service [Tomcat]
+2023-08-10 12:10:26,060 [INFO] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [RMI TCP Connection(5)-127.0.0.1] Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-08-10 12:10:26,069 [INFO] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [RMI TCP Connection(5)-127.0.0.1] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-08-10 12:10:26,071 [INFO] com.zaxxer.hikari.HikariDataSource [RMI TCP Connection(5)-127.0.0.1] HikariPool-1 - Shutdown initiated...
+2023-08-10 12:10:26,082 [INFO] com.zaxxer.hikari.HikariDataSource [RMI TCP Connection(5)-127.0.0.1] HikariPool-1 - Shutdown completed.
+2023-08-10 12:10:52,472 [INFO] com.emp.management.system.EmpManagementSystemApplication [main] Starting EmpManagementSystemApplication using Java 19.0.2 with PID 3752 (C:\Users\alish\JAVA\STS Projects\Emp-Management-System\target\classes started by alish in C:\Users\alish\JAVA\STS Projects\Emp-Management-System)
+2023-08-10 12:10:52,474 [INFO] com.emp.management.system.EmpManagementSystemApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-08-10 12:10:53,013 [INFO] org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-08-10 12:10:53,074 [INFO] org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 55 ms. Found 3 JPA repository interfaces.
+2023-08-10 12:10:53,483 [INFO] org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8585 (http)
+2023-08-10 12:10:53,491 [INFO] org.apache.catalina.core.StandardService [main] Starting service [Tomcat]
+2023-08-10 12:10:53,491 [INFO] org.apache.catalina.core.StandardEngine [main] Starting Servlet engine: [Apache Tomcat/10.1.10]
+2023-08-10 12:10:53,656 [INFO] org.apache.jasper.servlet.TldScanner [main] At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2023-08-10 12:10:53,661 [INFO] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [main] Initializing Spring embedded WebApplicationContext
+2023-08-10 12:10:53,661 [INFO] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1142 ms
+2023-08-10 12:10:53,785 [INFO] com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2023-08-10 12:10:53,998 [INFO] com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@2c1f8dbd
+2023-08-10 12:10:54,000 [INFO] com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2023-08-10 12:10:54,031 [INFO] org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-08-10 12:10:54,072 [INFO] org.hibernate.Version [main] HHH000412: Hibernate ORM core version 6.2.5.Final
+2023-08-10 12:10:54,075 [INFO] org.hibernate.cfg.Environment [main] HHH000406: Using bytecode reflection optimizer
+2023-08-10 12:10:54,188 [INFO] org.hibernate.bytecode.internal.BytecodeProviderInitiator [main] HHH000021: Bytecode provider name : bytebuddy
+2023-08-10 12:10:54,301 [INFO] org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-08-10 12:10:54,648 [INFO] org.hibernate.bytecode.internal.BytecodeProviderInitiator [main] HHH000021: Bytecode provider name : bytebuddy
+2023-08-10 12:10:55,247 [INFO] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-08-10 12:10:55,250 [INFO] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-08-10 12:10:55,462 [INFO] org.springframework.data.jpa.repository.query.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
+2023-08-10 12:10:55,893 [WARN] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-08-10 12:10:56,186 [INFO] org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8585 (http) with context path ''
+2023-08-10 12:10:56,196 [INFO] com.emp.management.system.EmpManagementSystemApplication [main] Started EmpManagementSystemApplication in 4.034 seconds (process running for 4.545)
+2023-08-10 12:11:01,001 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-10 12:11:03,862 [INFO] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [http-nio-8585-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-08-10 12:11:03,863 [INFO] org.springframework.web.servlet.DispatcherServlet [http-nio-8585-exec-1] Initializing Servlet 'dispatcherServlet'
+2023-08-10 12:11:03,864 [INFO] org.springframework.web.servlet.DispatcherServlet [http-nio-8585-exec-1] Completed initialization in 1 ms
+2023-08-10 12:12:01,004 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-10 12:13:01,011 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-10 12:14:01,007 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-10 12:15:01,002 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-10 12:16:01,010 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-10 12:17:01,002 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-10 12:17:44,860 [INFO] org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin [RMI TCP Connection(9)-127.0.0.1] Application shutdown requested.
+2023-08-10 12:17:44,874 [INFO] org.apache.catalina.core.StandardService [RMI TCP Connection(9)-127.0.0.1] Stopping service [Tomcat]
+2023-08-10 12:17:44,876 [INFO] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [RMI TCP Connection(9)-127.0.0.1] Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-08-10 12:17:44,884 [INFO] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [RMI TCP Connection(9)-127.0.0.1] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-08-10 12:17:44,886 [INFO] com.zaxxer.hikari.HikariDataSource [RMI TCP Connection(9)-127.0.0.1] HikariPool-1 - Shutdown initiated...
+2023-08-10 12:17:44,897 [INFO] com.zaxxer.hikari.HikariDataSource [RMI TCP Connection(9)-127.0.0.1] HikariPool-1 - Shutdown completed.
+2023-08-10 12:18:07,476 [INFO] com.emp.management.system.EmpManagementSystemApplication [main] Starting EmpManagementSystemApplication using Java 19.0.2 with PID 8720 (C:\Users\alish\JAVA\STS Projects\Emp-Management-System\target\classes started by alish in C:\Users\alish\JAVA\STS Projects\Emp-Management-System)
+2023-08-10 12:18:07,477 [INFO] com.emp.management.system.EmpManagementSystemApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-08-10 12:18:08,007 [INFO] org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-08-10 12:18:08,062 [INFO] org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 47 ms. Found 3 JPA repository interfaces.
+2023-08-10 12:18:08,498 [INFO] org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8585 (http)
+2023-08-10 12:18:08,506 [INFO] org.apache.catalina.core.StandardService [main] Starting service [Tomcat]
+2023-08-10 12:18:08,506 [INFO] org.apache.catalina.core.StandardEngine [main] Starting Servlet engine: [Apache Tomcat/10.1.10]
+2023-08-10 12:18:08,692 [INFO] org.apache.jasper.servlet.TldScanner [main] At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2023-08-10 12:18:08,696 [INFO] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [main] Initializing Spring embedded WebApplicationContext
+2023-08-10 12:18:08,696 [INFO] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1169 ms
+2023-08-10 12:18:08,822 [INFO] com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2023-08-10 12:18:09,087 [INFO] com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@1d6751e3
+2023-08-10 12:18:09,089 [INFO] com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2023-08-10 12:18:09,120 [INFO] org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-08-10 12:18:09,162 [INFO] org.hibernate.Version [main] HHH000412: Hibernate ORM core version 6.2.5.Final
+2023-08-10 12:18:09,164 [INFO] org.hibernate.cfg.Environment [main] HHH000406: Using bytecode reflection optimizer
+2023-08-10 12:18:09,283 [INFO] org.hibernate.bytecode.internal.BytecodeProviderInitiator [main] HHH000021: Bytecode provider name : bytebuddy
+2023-08-10 12:18:09,397 [INFO] org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-08-10 12:18:09,743 [INFO] org.hibernate.bytecode.internal.BytecodeProviderInitiator [main] HHH000021: Bytecode provider name : bytebuddy
+2023-08-10 12:18:10,350 [INFO] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-08-10 12:18:10,353 [INFO] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-08-10 12:18:10,568 [INFO] org.springframework.data.jpa.repository.query.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
+2023-08-10 12:18:11,030 [WARN] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-08-10 12:18:11,331 [INFO] org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8585 (http) with context path ''
+2023-08-10 12:18:11,343 [INFO] com.emp.management.system.EmpManagementSystemApplication [main] Started EmpManagementSystemApplication in 4.209 seconds (process running for 5.462)
+2023-08-10 12:18:14,325 [INFO] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [http-nio-8585-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-08-10 12:18:14,326 [INFO] org.springframework.web.servlet.DispatcherServlet [http-nio-8585-exec-2] Initializing Servlet 'dispatcherServlet'
+2023-08-10 12:18:14,327 [INFO] org.springframework.web.servlet.DispatcherServlet [http-nio-8585-exec-2] Completed initialization in 0 ms
+2023-08-10 12:18:19,723 [INFO] com.emp.management.system.utils.LoggingUtil [http-nio-8585-exec-5] Depositing amount for Employee ID: 16, Amount: 100.0
+2023-08-10 12:18:20,044 [INFO] com.emp.management.system.utils.LoggingUtil [http-nio-8585-exec-5] Amount deposited successfully for Employee ID: 16, Amount: 100.0
+2023-08-10 12:18:27,335 [INFO] com.emp.management.system.utils.LoggingUtil [http-nio-8585-exec-4] Depositing amount for Employee ID: 16, Amount: 0.0
+2023-08-10 12:18:27,343 [ERROR] com.emp.management.system.utils.LoggingUtil [http-nio-8585-exec-4] Invalid deposit amount: 0.0
+2023-08-10 12:18:32,873 [INFO] com.emp.management.system.utils.LoggingUtil [http-nio-8585-exec-7] Depositing amount for Employee ID: 16, Amount: 0.0
+2023-08-10 12:18:32,883 [ERROR] com.emp.management.system.utils.LoggingUtil [http-nio-8585-exec-7] Invalid deposit amount: 0.0
+2023-08-10 12:19:01,013 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-10 12:20:01,010 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-10 12:21:01,007 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-10 12:22:01,014 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-10 12:23:01,006 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-10 12:24:01,009 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-10 12:25:01,007 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-10 12:26:01,011 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-10 12:27:01,008 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-10 12:28:01,005 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-10 12:29:01,010 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-10 12:30:01,005 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-10 12:31:00,840 [INFO] org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin [RMI TCP Connection(17)-127.0.0.1] Application shutdown requested.
+2023-08-10 12:31:00,853 [INFO] org.apache.catalina.core.StandardService [RMI TCP Connection(17)-127.0.0.1] Stopping service [Tomcat]
+2023-08-10 12:31:00,854 [INFO] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [RMI TCP Connection(17)-127.0.0.1] Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-08-10 12:31:00,862 [INFO] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [RMI TCP Connection(17)-127.0.0.1] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-08-10 12:31:00,865 [INFO] com.zaxxer.hikari.HikariDataSource [RMI TCP Connection(17)-127.0.0.1] HikariPool-1 - Shutdown initiated...
+2023-08-10 12:31:00,881 [INFO] com.zaxxer.hikari.HikariDataSource [RMI TCP Connection(17)-127.0.0.1] HikariPool-1 - Shutdown completed.
+2023-08-10 12:31:03,376 [INFO] com.emp.management.system.EmpManagementSystemApplication [main] Starting EmpManagementSystemApplication using Java 19.0.2 with PID 5280 (C:\Users\alish\JAVA\STS Projects\Emp-Management-System\target\classes started by alish in C:\Users\alish\JAVA\STS Projects\Emp-Management-System)
+2023-08-10 12:31:03,378 [INFO] com.emp.management.system.EmpManagementSystemApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-08-10 12:31:03,898 [INFO] org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-08-10 12:31:03,949 [INFO] org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 44 ms. Found 3 JPA repository interfaces.
+2023-08-10 12:31:04,389 [INFO] org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8585 (http)
+2023-08-10 12:31:04,398 [INFO] org.apache.catalina.core.StandardService [main] Starting service [Tomcat]
+2023-08-10 12:31:04,398 [INFO] org.apache.catalina.core.StandardEngine [main] Starting Servlet engine: [Apache Tomcat/10.1.10]
+2023-08-10 12:31:04,601 [INFO] org.apache.jasper.servlet.TldScanner [main] At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2023-08-10 12:31:04,607 [INFO] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [main] Initializing Spring embedded WebApplicationContext
+2023-08-10 12:31:04,607 [INFO] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1183 ms
+2023-08-10 12:31:04,746 [INFO] com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2023-08-10 12:31:05,018 [INFO] com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@1d6751e3
+2023-08-10 12:31:05,020 [INFO] com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2023-08-10 12:31:05,053 [INFO] org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-08-10 12:31:05,095 [INFO] org.hibernate.Version [main] HHH000412: Hibernate ORM core version 6.2.5.Final
+2023-08-10 12:31:05,097 [INFO] org.hibernate.cfg.Environment [main] HHH000406: Using bytecode reflection optimizer
+2023-08-10 12:31:05,206 [INFO] org.hibernate.bytecode.internal.BytecodeProviderInitiator [main] HHH000021: Bytecode provider name : bytebuddy
+2023-08-10 12:31:05,314 [INFO] org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-08-10 12:31:05,655 [INFO] org.hibernate.bytecode.internal.BytecodeProviderInitiator [main] HHH000021: Bytecode provider name : bytebuddy
+2023-08-10 12:31:06,247 [INFO] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-08-10 12:31:06,250 [INFO] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-08-10 12:31:06,448 [INFO] org.springframework.data.jpa.repository.query.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
+2023-08-10 12:31:06,884 [WARN] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-08-10 12:31:07,167 [INFO] org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8585 (http) with context path ''
+2023-08-10 12:31:07,178 [INFO] com.emp.management.system.EmpManagementSystemApplication [main] Started EmpManagementSystemApplication in 4.13 seconds (process running for 4.644)
+2023-08-10 12:31:11,502 [INFO] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [http-nio-8585-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-08-10 12:31:11,503 [INFO] org.springframework.web.servlet.DispatcherServlet [http-nio-8585-exec-1] Initializing Servlet 'dispatcherServlet'
+2023-08-10 12:31:11,504 [INFO] org.springframework.web.servlet.DispatcherServlet [http-nio-8585-exec-1] Completed initialization in 1 ms
+2023-08-10 12:31:24,940 [INFO] com.emp.management.system.utils.LoggingUtil [http-nio-8585-exec-4] Depositing amount for Employee ID: 16, Amount: 4.0
+2023-08-10 12:31:25,008 [INFO] com.emp.management.system.utils.LoggingUtil [http-nio-8585-exec-4] Amount deposited successfully for Employee ID: 16, Amount: 4.0
+2023-08-10 12:32:01,009 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-10 12:32:10,562 [INFO] com.emp.management.system.utils.LoggingUtil [http-nio-8585-exec-7] Withdrawing amount for Employee ID: 16, Amount: 2000.0
+2023-08-10 12:33:01,013 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-10 12:34:01,009 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-10 12:35:01,007 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-10 12:35:31,324 [INFO] org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin [RMI TCP Connection(7)-127.0.0.1] Application shutdown requested.
+2023-08-10 12:35:31,335 [INFO] org.apache.catalina.core.StandardService [RMI TCP Connection(7)-127.0.0.1] Stopping service [Tomcat]
+2023-08-10 12:35:31,336 [INFO] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [RMI TCP Connection(7)-127.0.0.1] Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-08-10 12:35:31,345 [INFO] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [RMI TCP Connection(7)-127.0.0.1] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-08-10 12:35:31,348 [INFO] com.zaxxer.hikari.HikariDataSource [RMI TCP Connection(7)-127.0.0.1] HikariPool-1 - Shutdown initiated...
+2023-08-10 12:35:31,363 [INFO] com.zaxxer.hikari.HikariDataSource [RMI TCP Connection(7)-127.0.0.1] HikariPool-1 - Shutdown completed.
+2023-08-10 12:35:33,947 [INFO] com.emp.management.system.EmpManagementSystemApplication [main] Starting EmpManagementSystemApplication using Java 19.0.2 with PID 15524 (C:\Users\alish\JAVA\STS Projects\Emp-Management-System\target\classes started by alish in C:\Users\alish\JAVA\STS Projects\Emp-Management-System)
+2023-08-10 12:35:33,949 [INFO] com.emp.management.system.EmpManagementSystemApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-08-10 12:35:34,521 [INFO] org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-08-10 12:35:34,582 [INFO] org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 54 ms. Found 3 JPA repository interfaces.
+2023-08-10 12:35:35,006 [INFO] org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8585 (http)
+2023-08-10 12:35:35,015 [INFO] org.apache.catalina.core.StandardService [main] Starting service [Tomcat]
+2023-08-10 12:35:35,016 [INFO] org.apache.catalina.core.StandardEngine [main] Starting Servlet engine: [Apache Tomcat/10.1.10]
+2023-08-10 12:35:35,186 [INFO] org.apache.jasper.servlet.TldScanner [main] At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2023-08-10 12:35:35,190 [INFO] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [main] Initializing Spring embedded WebApplicationContext
+2023-08-10 12:35:35,191 [INFO] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1192 ms
+2023-08-10 12:35:35,313 [INFO] com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2023-08-10 12:35:35,536 [INFO] com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@2c1f8dbd
+2023-08-10 12:35:35,539 [INFO] com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2023-08-10 12:35:35,577 [INFO] org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-08-10 12:35:35,619 [INFO] org.hibernate.Version [main] HHH000412: Hibernate ORM core version 6.2.5.Final
+2023-08-10 12:35:35,621 [INFO] org.hibernate.cfg.Environment [main] HHH000406: Using bytecode reflection optimizer
+2023-08-10 12:35:35,730 [INFO] org.hibernate.bytecode.internal.BytecodeProviderInitiator [main] HHH000021: Bytecode provider name : bytebuddy
+2023-08-10 12:35:35,848 [INFO] org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-08-10 12:35:36,184 [INFO] org.hibernate.bytecode.internal.BytecodeProviderInitiator [main] HHH000021: Bytecode provider name : bytebuddy
+2023-08-10 12:35:36,773 [INFO] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-08-10 12:35:36,778 [INFO] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-08-10 12:35:36,985 [INFO] org.springframework.data.jpa.repository.query.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
+2023-08-10 12:35:37,407 [WARN] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-08-10 12:35:37,704 [INFO] org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8585 (http) with context path ''
+2023-08-10 12:35:37,715 [INFO] com.emp.management.system.EmpManagementSystemApplication [main] Started EmpManagementSystemApplication in 4.087 seconds (process running for 4.638)
+2023-08-10 12:35:44,609 [INFO] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [http-nio-8585-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-08-10 12:35:44,610 [INFO] org.springframework.web.servlet.DispatcherServlet [http-nio-8585-exec-1] Initializing Servlet 'dispatcherServlet'
+2023-08-10 12:35:44,612 [INFO] org.springframework.web.servlet.DispatcherServlet [http-nio-8585-exec-1] Completed initialization in 2 ms
+2023-08-10 12:36:01,002 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-10 12:37:01,004 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-10 12:37:05,278 [INFO] org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin [RMI TCP Connection(5)-127.0.0.1] Application shutdown requested.
+2023-08-10 12:37:05,354 [INFO] org.apache.catalina.core.StandardService [RMI TCP Connection(5)-127.0.0.1] Stopping service [Tomcat]
+2023-08-10 12:37:05,380 [INFO] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [RMI TCP Connection(5)-127.0.0.1] Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-08-10 12:37:05,441 [INFO] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [RMI TCP Connection(5)-127.0.0.1] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-08-10 12:37:05,444 [INFO] com.zaxxer.hikari.HikariDataSource [RMI TCP Connection(5)-127.0.0.1] HikariPool-1 - Shutdown initiated...
+2023-08-10 12:37:05,461 [INFO] com.zaxxer.hikari.HikariDataSource [RMI TCP Connection(5)-127.0.0.1] HikariPool-1 - Shutdown completed.
+2023-08-10 12:37:08,376 [INFO] com.emp.management.system.EmpManagementSystemApplication [main] Starting EmpManagementSystemApplication using Java 19.0.2 with PID 16060 (C:\Users\alish\JAVA\STS Projects\Emp-Management-System\target\classes started by alish in C:\Users\alish\JAVA\STS Projects\Emp-Management-System)
+2023-08-10 12:37:08,377 [INFO] com.emp.management.system.EmpManagementSystemApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-08-10 12:37:08,933 [INFO] org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-08-10 12:37:08,985 [INFO] org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 46 ms. Found 3 JPA repository interfaces.
+2023-08-10 12:37:09,401 [INFO] org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8585 (http)
+2023-08-10 12:37:09,409 [INFO] org.apache.catalina.core.StandardService [main] Starting service [Tomcat]
+2023-08-10 12:37:09,409 [INFO] org.apache.catalina.core.StandardEngine [main] Starting Servlet engine: [Apache Tomcat/10.1.10]
+2023-08-10 12:37:09,570 [INFO] org.apache.jasper.servlet.TldScanner [main] At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2023-08-10 12:37:09,575 [INFO] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [main] Initializing Spring embedded WebApplicationContext
+2023-08-10 12:37:09,575 [INFO] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1148 ms
+2023-08-10 12:37:09,702 [INFO] com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2023-08-10 12:37:09,937 [INFO] com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@2c1f8dbd
+2023-08-10 12:37:09,939 [INFO] com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2023-08-10 12:37:09,971 [INFO] org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-08-10 12:37:10,010 [INFO] org.hibernate.Version [main] HHH000412: Hibernate ORM core version 6.2.5.Final
+2023-08-10 12:37:10,013 [INFO] org.hibernate.cfg.Environment [main] HHH000406: Using bytecode reflection optimizer
+2023-08-10 12:37:10,125 [INFO] org.hibernate.bytecode.internal.BytecodeProviderInitiator [main] HHH000021: Bytecode provider name : bytebuddy
+2023-08-10 12:37:10,236 [INFO] org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-08-10 12:37:10,584 [INFO] org.hibernate.bytecode.internal.BytecodeProviderInitiator [main] HHH000021: Bytecode provider name : bytebuddy
+2023-08-10 12:37:11,202 [INFO] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-08-10 12:37:11,205 [INFO] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-08-10 12:37:11,412 [INFO] org.springframework.data.jpa.repository.query.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
+2023-08-10 12:37:11,847 [WARN] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-08-10 12:37:12,133 [INFO] org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8585 (http) with context path ''
+2023-08-10 12:37:12,144 [INFO] com.emp.management.system.EmpManagementSystemApplication [main] Started EmpManagementSystemApplication in 4.099 seconds (process running for 4.618)
+2023-08-10 12:37:15,932 [INFO] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [http-nio-8585-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-08-10 12:37:15,932 [INFO] org.springframework.web.servlet.DispatcherServlet [http-nio-8585-exec-1] Initializing Servlet 'dispatcherServlet'
+2023-08-10 12:37:15,933 [INFO] org.springframework.web.servlet.DispatcherServlet [http-nio-8585-exec-1] Completed initialization in 1 ms
+2023-08-10 12:38:01,004 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-10 12:38:49,805 [INFO] com.emp.management.system.utils.LoggingUtil [http-nio-8585-exec-8] Depositing amount for Employee ID: 16, Amount: 100.0
+2023-08-10 12:38:49,918 [INFO] com.emp.management.system.utils.LoggingUtil [http-nio-8585-exec-8] Amount deposited successfully for Employee ID: 16, Amount: 100.0
+2023-08-10 12:38:51,996 [INFO] com.emp.management.system.utils.LoggingUtil [http-nio-8585-exec-9] Depositing amount for Employee ID: 16, Amount: 100.0
+2023-08-10 12:38:52,025 [INFO] com.emp.management.system.utils.LoggingUtil [http-nio-8585-exec-9] Amount deposited successfully for Employee ID: 16, Amount: 100.0
+2023-08-10 12:39:01,004 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-10 12:39:45,350 [INFO] org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin [RMI TCP Connection(7)-127.0.0.1] Application shutdown requested.
+2023-08-10 12:39:45,361 [INFO] org.apache.catalina.core.StandardService [RMI TCP Connection(7)-127.0.0.1] Stopping service [Tomcat]
+2023-08-10 12:39:45,363 [INFO] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [RMI TCP Connection(7)-127.0.0.1] Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-08-10 12:39:45,372 [INFO] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [RMI TCP Connection(7)-127.0.0.1] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-08-10 12:39:45,375 [INFO] com.zaxxer.hikari.HikariDataSource [RMI TCP Connection(7)-127.0.0.1] HikariPool-1 - Shutdown initiated...
+2023-08-10 12:39:45,390 [INFO] com.zaxxer.hikari.HikariDataSource [RMI TCP Connection(7)-127.0.0.1] HikariPool-1 - Shutdown completed.
+2023-08-10 12:39:49,135 [INFO] com.emp.management.system.EmpManagementSystemApplication [main] Starting EmpManagementSystemApplication using Java 19.0.2 with PID 5136 (C:\Users\alish\JAVA\STS Projects\Emp-Management-System\target\classes started by alish in C:\Users\alish\JAVA\STS Projects\Emp-Management-System)
+2023-08-10 12:39:49,137 [INFO] com.emp.management.system.EmpManagementSystemApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-08-10 12:39:49,661 [INFO] org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-08-10 12:39:49,712 [INFO] org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 44 ms. Found 3 JPA repository interfaces.
+2023-08-10 12:39:50,147 [INFO] org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8585 (http)
+2023-08-10 12:39:50,156 [INFO] org.apache.catalina.core.StandardService [main] Starting service [Tomcat]
+2023-08-10 12:39:50,156 [INFO] org.apache.catalina.core.StandardEngine [main] Starting Servlet engine: [Apache Tomcat/10.1.10]
+2023-08-10 12:39:50,320 [INFO] org.apache.jasper.servlet.TldScanner [main] At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2023-08-10 12:39:50,324 [INFO] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [main] Initializing Spring embedded WebApplicationContext
+2023-08-10 12:39:50,324 [INFO] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1136 ms
+2023-08-10 12:39:50,446 [INFO] com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2023-08-10 12:39:50,662 [INFO] com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@2c1f8dbd
+2023-08-10 12:39:50,664 [INFO] com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2023-08-10 12:39:50,697 [INFO] org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-08-10 12:39:50,738 [INFO] org.hibernate.Version [main] HHH000412: Hibernate ORM core version 6.2.5.Final
+2023-08-10 12:39:50,740 [INFO] org.hibernate.cfg.Environment [main] HHH000406: Using bytecode reflection optimizer
+2023-08-10 12:39:50,853 [INFO] org.hibernate.bytecode.internal.BytecodeProviderInitiator [main] HHH000021: Bytecode provider name : bytebuddy
+2023-08-10 12:39:50,967 [INFO] org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-08-10 12:39:51,315 [INFO] org.hibernate.bytecode.internal.BytecodeProviderInitiator [main] HHH000021: Bytecode provider name : bytebuddy
+2023-08-10 12:39:51,917 [INFO] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-08-10 12:39:51,920 [INFO] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-08-10 12:39:52,130 [INFO] org.springframework.data.jpa.repository.query.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
+2023-08-10 12:39:52,558 [WARN] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-08-10 12:39:52,857 [INFO] org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8585 (http) with context path ''
+2023-08-10 12:39:52,868 [INFO] com.emp.management.system.EmpManagementSystemApplication [main] Started EmpManagementSystemApplication in 4.059 seconds (process running for 4.569)
+2023-08-10 12:40:00,963 [INFO] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [http-nio-8585-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-08-10 12:40:00,963 [INFO] org.springframework.web.servlet.DispatcherServlet [http-nio-8585-exec-2] Initializing Servlet 'dispatcherServlet'
+2023-08-10 12:40:00,964 [INFO] org.springframework.web.servlet.DispatcherServlet [http-nio-8585-exec-2] Completed initialization in 0 ms
+2023-08-10 12:40:01,015 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-10 12:40:07,325 [INFO] com.emp.management.system.utils.LoggingUtil [http-nio-8585-exec-4] Withdrawing amount for Employee ID: 16, Amount: 0.0
+2023-08-10 12:40:07,346 [INFO] com.emp.management.system.utils.LoggingUtil [http-nio-8585-exec-4] Withdrawing amount for Employee ID: 16, Amount: 0.0
+2023-08-10 12:40:07,408 [INFO] com.emp.management.system.utils.LoggingUtil [http-nio-8585-exec-4] Amount withdrawn successfully for Employee ID: 16, Amount: 0.0
+2023-08-10 12:41:01,005 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-10 12:41:32,108 [INFO] org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin [RMI TCP Connection(4)-127.0.0.1] Application shutdown requested.
+2023-08-10 12:41:32,130 [INFO] org.apache.catalina.core.StandardService [RMI TCP Connection(4)-127.0.0.1] Stopping service [Tomcat]
+2023-08-10 12:41:32,132 [INFO] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [RMI TCP Connection(4)-127.0.0.1] Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-08-10 12:41:32,157 [INFO] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [RMI TCP Connection(4)-127.0.0.1] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-08-10 12:41:32,160 [INFO] com.zaxxer.hikari.HikariDataSource [RMI TCP Connection(4)-127.0.0.1] HikariPool-1 - Shutdown initiated...
+2023-08-10 12:41:32,181 [INFO] com.zaxxer.hikari.HikariDataSource [RMI TCP Connection(4)-127.0.0.1] HikariPool-1 - Shutdown completed.
+2023-08-10 12:41:35,278 [INFO] com.emp.management.system.EmpManagementSystemApplication [main] Starting EmpManagementSystemApplication using Java 19.0.2 with PID 16512 (C:\Users\alish\JAVA\STS Projects\Emp-Management-System\target\classes started by alish in C:\Users\alish\JAVA\STS Projects\Emp-Management-System)
+2023-08-10 12:41:35,279 [INFO] com.emp.management.system.EmpManagementSystemApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-08-10 12:41:35,838 [INFO] org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-08-10 12:41:35,888 [INFO] org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 42 ms. Found 3 JPA repository interfaces.
+2023-08-10 12:41:36,318 [INFO] org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8585 (http)
+2023-08-10 12:41:36,327 [INFO] org.apache.catalina.core.StandardService [main] Starting service [Tomcat]
+2023-08-10 12:41:36,327 [INFO] org.apache.catalina.core.StandardEngine [main] Starting Servlet engine: [Apache Tomcat/10.1.10]
+2023-08-10 12:41:36,504 [INFO] org.apache.jasper.servlet.TldScanner [main] At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2023-08-10 12:41:36,508 [INFO] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [main] Initializing Spring embedded WebApplicationContext
+2023-08-10 12:41:36,509 [INFO] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1183 ms
+2023-08-10 12:41:36,634 [INFO] com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2023-08-10 12:41:36,856 [INFO] com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@1d6751e3
+2023-08-10 12:41:36,859 [INFO] com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2023-08-10 12:41:36,889 [INFO] org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-08-10 12:41:36,930 [INFO] org.hibernate.Version [main] HHH000412: Hibernate ORM core version 6.2.5.Final
+2023-08-10 12:41:36,933 [INFO] org.hibernate.cfg.Environment [main] HHH000406: Using bytecode reflection optimizer
+2023-08-10 12:41:37,051 [INFO] org.hibernate.bytecode.internal.BytecodeProviderInitiator [main] HHH000021: Bytecode provider name : bytebuddy
+2023-08-10 12:41:37,171 [INFO] org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-08-10 12:41:37,526 [INFO] org.hibernate.bytecode.internal.BytecodeProviderInitiator [main] HHH000021: Bytecode provider name : bytebuddy
+2023-08-10 12:41:38,119 [INFO] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-08-10 12:41:38,122 [INFO] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-08-10 12:41:38,337 [INFO] org.springframework.data.jpa.repository.query.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
+2023-08-10 12:41:38,758 [WARN] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-08-10 12:41:39,060 [INFO] org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8585 (http) with context path ''
+2023-08-10 12:41:39,071 [INFO] com.emp.management.system.EmpManagementSystemApplication [main] Started EmpManagementSystemApplication in 4.143 seconds (process running for 4.816)
+2023-08-10 12:41:42,129 [INFO] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [http-nio-8585-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-08-10 12:41:42,129 [INFO] org.springframework.web.servlet.DispatcherServlet [http-nio-8585-exec-1] Initializing Servlet 'dispatcherServlet'
+2023-08-10 12:41:42,130 [INFO] org.springframework.web.servlet.DispatcherServlet [http-nio-8585-exec-1] Completed initialization in 1 ms
+2023-08-10 12:42:01,013 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-10 12:42:01,557 [INFO] com.emp.management.system.utils.LoggingUtil [http-nio-8585-exec-7] Withdrawing amount for Employee ID: 16, Amount: 1000.0
+2023-08-10 12:43:01,005 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-10 12:44:01,008 [INFO] com.emp.management.system.utils.LoggingUtil [scheduling-1] Sending taxable salary message
+2023-08-10 12:44:11,342 [INFO] org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin [RMI TCP Connection(7)-127.0.0.1] Application shutdown requested.
+2023-08-10 12:44:11,366 [INFO] org.apache.catalina.core.StandardService [RMI TCP Connection(7)-127.0.0.1] Stopping service [Tomcat]
+2023-08-10 12:44:11,368 [INFO] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [RMI TCP Connection(7)-127.0.0.1] Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-08-10 12:44:11,379 [INFO] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [RMI TCP Connection(7)-127.0.0.1] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-08-10 12:44:11,382 [INFO] com.zaxxer.hikari.HikariDataSource [RMI TCP Connection(7)-127.0.0.1] HikariPool-1 - Shutdown initiated...
+2023-08-10 12:44:11,400 [INFO] com.zaxxer.hikari.HikariDataSource [RMI TCP Connection(7)-127.0.0.1] HikariPool-1 - Shutdown completed.
+2023-08-10 12:44:15,249 [INFO] com.emp.management.system.EmpManagementSystemApplication [main] Starting EmpManagementSystemApplication using Java 19.0.2 with PID 8956 (C:\Users\alish\JAVA\STS Projects\Emp-Management-System\target\classes started by alish in C:\Users\alish\JAVA\STS Projects\Emp-Management-System)
+2023-08-10 12:44:15,251 [INFO] com.emp.management.system.EmpManagementSystemApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-08-10 12:44:15,768 [INFO] org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-08-10 12:44:15,821 [INFO] org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 46 ms. Found 3 JPA repository interfaces.
+2023-08-10 12:44:16,241 [INFO] org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8585 (http)
+2023-08-10 12:44:16,249 [INFO] org.apache.catalina.core.StandardService [main] Starting service [Tomcat]
+2023-08-10 12:44:16,249 [INFO] org.apache.catalina.core.StandardEngine [main] Starting Servlet engine: [Apache Tomcat/10.1.10]
+2023-08-10 12:44:16,410 [INFO] org.apache.jasper.servlet.TldScanner [main] At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2023-08-10 12:44:16,414 [INFO] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [main] Initializing Spring embedded WebApplicationContext
+2023-08-10 12:44:16,415 [INFO] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1115 ms
+2023-08-10 12:44:16,539 [INFO] com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2023-08-10 12:44:16,779 [INFO] com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@2d258eff
+2023-08-10 12:44:16,780 [INFO] com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2023-08-10 12:44:16,812 [INFO] org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-08-10 12:44:16,853 [INFO] org.hibernate.Version [main] HHH000412: Hibernate ORM core version 6.2.5.Final
+2023-08-10 12:44:16,855 [INFO] org.hibernate.cfg.Environment [main] HHH000406: Using bytecode reflection optimizer
+2023-08-10 12:44:16,972 [INFO] org.hibernate.bytecode.internal.BytecodeProviderInitiator [main] HHH000021: Bytecode provider name : bytebuddy
+2023-08-10 12:44:17,102 [INFO] org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-08-10 12:44:17,461 [INFO] org.hibernate.bytecode.internal.BytecodeProviderInitiator [main] HHH000021: Bytecode provider name : bytebuddy
+2023-08-10 12:44:18,108 [INFO] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-08-10 12:44:18,112 [INFO] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-08-10 12:44:18,317 [INFO] org.springframework.data.jpa.repository.query.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
+2023-08-10 12:44:18,737 [WARN] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-08-10 12:44:19,029 [INFO] org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8585 (http) with context path ''
+2023-08-10 12:44:19,039 [INFO] com.emp.management.system.EmpManagementSystemApplication [main] Started EmpManagementSystemApplication in 4.132 seconds (process running for 4.651)
+2023-08-10 12:44:21,576 [INFO] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [http-nio-8585-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-08-10 12:44:21,576 [INFO] org.springframework.web.servlet.DispatcherServlet [http-nio-8585-exec-1] Initializing Servlet 'dispatcherServlet'
+2023-08-10 12:44:21,577 [INFO] org.springframework.web.servlet.DispatcherServlet [http-nio-8585-exec-1] Completed initialization in 1 ms
+2023-08-10 12:44:39,034 [INFO] org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin [RMI TCP Connection(2)-127.0.0.1] Application shutdown requested.
+2023-08-10 12:44:39,047 [INFO] org.apache.catalina.core.StandardService [RMI TCP Connection(2)-127.0.0.1] Stopping service [Tomcat]
+2023-08-10 12:44:39,048 [INFO] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [RMI TCP Connection(2)-127.0.0.1] Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-08-10 12:44:39,057 [INFO] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [RMI TCP Connection(2)-127.0.0.1] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-08-10 12:44:39,060 [INFO] com.zaxxer.hikari.HikariDataSource [RMI TCP Connection(2)-127.0.0.1] HikariPool-1 - Shutdown initiated...
+2023-08-10 12:44:39,074 [INFO] com.zaxxer.hikari.HikariDataSource [RMI TCP Connection(2)-127.0.0.1] HikariPool-1 - Shutdown completed.

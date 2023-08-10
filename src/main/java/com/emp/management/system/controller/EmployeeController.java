@@ -1,17 +1,14 @@
 package com.emp.management.system.controller;
 
 
-import java.util.ArrayList;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Map;
 
 import javax.validation.Valid;
 import javax.validation.ValidationException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -23,11 +20,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.emp.management.system.request.AccountHistoryRequest;
 import com.emp.management.system.request.CreateAccountRequest;
+import com.emp.management.system.request.DateRangeRequest;
 import com.emp.management.system.request.DepositRequest;
 import com.emp.management.system.request.EmployeeDTO;
 import com.emp.management.system.request.EmployeeUpdateRequestDTO;
@@ -35,8 +31,6 @@ import com.emp.management.system.request.WithdrawRequest;
 import com.emp.management.system.response.AccountHistoryResponse;
 import com.emp.management.system.service.EmployeeService;
 import com.emp.management.system.utils.LoggingUtil;
-
-import jakarta.transaction.Transaction;
 
 
 @Validated
@@ -75,10 +69,17 @@ public class EmployeeController {
     }
 
     @GetMapping("/managers/{managerId}")
-    public ResponseEntity<List<EmployeeDTO>> getEmployeesByManagerId(@PathVariable Integer managerId) {
+    public ResponseEntity<?> getEmployeesByManagerId(@PathVariable Integer managerId) {
+        if (managerId < 101 || managerId > 105) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body("Manager ID should be between 101 and 105");
+        }
+        
         LoggingUtil.logInfo("Request received to get employees by manager ID");
         return employeeService.getEmployeesByManagerId(managerId);
     }
+
+
 
     @PutMapping("/update/{id}")
     public ResponseEntity<String> updateEmployeeDetails(@PathVariable Integer id,
@@ -105,72 +106,98 @@ public class EmployeeController {
         return employeeService.getAllEmployees();
     }
     
-    @PostMapping("/create-account/{employeeId}")
-    public ResponseEntity<String> createAccount(@PathVariable Integer employeeId, @RequestBody CreateAccountRequest createAccountRequest) {
-        String accountType = createAccountRequest.getAccountType(); // Extract accountType from the request body
-        String result = employeeService.createAccount(employeeId, accountType);
+    @PostMapping("/create-account")
+    public ResponseEntity<String> createAccount(@RequestBody CreateAccountRequest createAccountRequest) {
+        String accountType = createAccountRequest.getAccountType(); 
+        String result = employeeService.createAccount(createAccountRequest.getEmployeeId(), accountType);
         return ResponseEntity.ok(result);
     }
     
-    @PostMapping("/deposit/{employeeId}")
-    public ResponseEntity<String> depositAmount(@PathVariable Integer employeeId, @RequestBody DepositRequest depositRequest) {
-        Double amount = depositRequest.getAmount(); // Extract amount from the request body
+    @PostMapping("/deposit")
+    public ResponseEntity<String> depositAmount(@RequestBody DepositRequest depositRequest) {
+        String validationMessage = depositRequest.validate();
 
-        String result = employeeService.depositAmount(employeeId, amount);
-        return ResponseEntity.ok(result);
-    }
+        if (validationMessage != null) {
+            return ResponseEntity.badRequest().body(validationMessage);
+        }
 
-    @PostMapping("/withdraw/{employeeId}")
-    public ResponseEntity<String> withdrawAmount(@PathVariable Integer employeeId, @RequestBody WithdrawRequest withdrawRequest) {
-        Double amount = withdrawRequest.getWithdrawalAmount(); // Extract withdrawal amount from the request body
+        Integer employeeId = depositRequest.getEmployeeId();
+        Double depositAmount = depositRequest.getAmount();
 
-        String response = employeeService.withdrawAmount(employeeId, amount);
+        if (depositAmount == 0) {
+            // Get current balance logic (replace this with your actual logic)
+            Double currentBalance = employeeService.getCurrentBalance(employeeId);
+
+            String responseMessage = "Deposit amount cannot be zero. Current balance: " + currentBalance;
+            return ResponseEntity.badRequest().body(responseMessage);
+        }
+
+        String response = employeeService.depositAmount(employeeId, depositAmount);
         return ResponseEntity.ok(response);
     }
+
+
     
-//    @PostMapping("/accountHistory/{employeeId}")
-//    public ResponseEntity<List<String>> getAccountHistory(
-//            @PathVariable Integer employeeId,
-//            @RequestBody AccountHistoryRequest request
-//    ) {
-//        List<AccountHistoryResponse> historyResponses = employeeService.getTransactionDetails(
-//                employeeId,
-//                request.getStartDate(),
-//                request.getEndDate()
-//        );
-//
-//        List<String> accountHistory = new ArrayList<>();
-//
-//        for (AccountHistoryResponse response : historyResponses) {
-//            String historyEntry = "Transaction Type: " + response.getTransactionType() +
-//                    ", Account Number: " + response.getCustomerAccountNumber() +
-//                    ", Date of Transaction: " + response.getDateOfTransaction();
-//            accountHistory.add(historyEntry);
-//        }
-//
-//        return ResponseEntity.ok(accountHistory);
-//    }
+    @PostMapping("/withdraw")
+    public ResponseEntity<String> withdrawMoney(@RequestBody WithdrawRequest withdrawRequest) {
+        String validationError = withdrawRequest.validate();
+        
+        if (validationError != null) {
+            return ResponseEntity.badRequest().body(validationError);
+        }
 
-    @PostMapping("/accountHistory/{employeeId}")
-    public ResponseEntity<List<AccountHistoryResponse>> getAccountHistory(
-            @PathVariable Integer employeeId,
-            @RequestBody AccountHistoryRequest request
-    ) {
-        List<AccountHistoryResponse> historyResponses = employeeService.getTransactionDetails(
-                employeeId,
-                request.getStartDate(),
-                request.getEndDate()
-        );
+        Integer employeeId = withdrawRequest.getEmployeeId();
+        Double withdrawalAmount = withdrawRequest.getWithdrawalAmount();
+        
+        Double currentBalance = employeeService.getCurrentBalance(employeeId);
 
-        return ResponseEntity.ok(historyResponses);
+        if (withdrawalAmount == 0) {
+            return ResponseEntity.ok("WithdrawalAmount is 0. Current balance: " + currentBalance);
+        }
+        
+        if (withdrawalAmount > currentBalance) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("Insufficient Balance for the withdrawal. Current balance: " + currentBalance);
+        }
+
+        String response = employeeService.withdrawAmount(employeeId, withdrawalAmount);
+        return ResponseEntity.ok(response);
     }
 
- 
+    
+    
+    @PostMapping("/transactions/{employeeId}")
+    public ResponseEntity<?> getTransactionDetails(
+            @PathVariable Integer employeeId,
+            @RequestBody DateRangeRequest dateRangeRequest) {
+        
+        try {
+            LoggingUtil.logInfo("Received request for employee ID: {}", employeeId);
+
+            LocalDateTime startDate = dateRangeRequest.getStartDateTime();
+            LocalDateTime endDate = dateRangeRequest.getEndDateTime();
+
+            // Check if the start date and end date are valid
+            if (startDate == null || endDate == null) {
+                LoggingUtil.logError("Invalid date range provided for employee ID: {}", employeeId);
+                return ResponseEntity.badRequest().body("Invalid date range provided. Make sure to provide both startDate and endDate.");
+            }
+
+            if (startDate.isAfter(endDate)) {
+                LoggingUtil.logError("Invalid date range provided for employee ID: {}", employeeId);
+                return ResponseEntity.badRequest().body("End date should be greater than or equal to the start date.");
+            }
+
+            List<AccountHistoryResponse> accountHistory = employeeService.getTransactionDetails(employeeId, dateRangeRequest);
+            LoggingUtil.logInfo("Account history retrieved successfully for employee ID: {}", employeeId);
+            return ResponseEntity.ok(accountHistory);
+        } catch (IllegalArgumentException e) {
+            LoggingUtil.logError("Error processing request for employee ID: {}", employeeId);
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 
 }
-
-    	
-
     
     
     

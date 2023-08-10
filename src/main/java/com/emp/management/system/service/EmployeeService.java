@@ -5,15 +5,11 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -26,26 +22,24 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
+import com.emp.management.system.exception.InsufficientBalanceException;
 import com.emp.management.system.model.Employee;
 import com.emp.management.system.model.PhoneNumber;
 import com.emp.management.system.model.VoterID;
 import com.emp.management.system.repository.EmployeeRepository;
 import com.emp.management.system.repository.PhoneNumberRepository;
 import com.emp.management.system.repository.VoterIDRepository;
-import com.emp.management.system.request.AccountHistoryRequest;
 import com.emp.management.system.request.CreateAccountRequest;
+import com.emp.management.system.request.DateRangeRequest;
 import com.emp.management.system.request.DepositRequest;
 import com.emp.management.system.request.EmployeeDTO;
 import com.emp.management.system.request.EmployeeUpdateRequestDTO;
 import com.emp.management.system.request.PhoneNumberDTO;
-import com.emp.management.system.request.TransactionRequest;
 import com.emp.management.system.request.VoterIDDTO;
 import com.emp.management.system.request.WithdrawRequest;
 import com.emp.management.system.response.AccountHistoryResponse;
 import com.emp.management.system.response.AccountResponse;
 import com.emp.management.system.utils.LoggingUtil;
-
-import jakarta.transaction.Transaction;
 
 
 
@@ -68,42 +62,64 @@ public class EmployeeService {
 	    private final String bankCreateAccountUrl = bankBaseUrl + "/create-account";
 	    private final String bankDepositUrl = bankBaseUrl + "/deposit";
 	    private final String bankWithdrawalUrl = bankBaseUrl + "/withdraw";
-	    private final String bankAccountHistoryUrl = "http://localhost:8989/BMS/account-history";
+	    private final String bankAccountHistoryUrl = "http://localhost:8989/BMS/transactions";
 
 
 
-	
-	public void createEmployeeFromDTO(EmployeeDTO employeeDTO) {
-		LoggingUtil.logInfo("Creating employee from DTO");
-        Employee employee = convertToEntity(employeeDTO);
-        // Initialize account balance to zero
-        employee.setBalance(0.0);
+	    public void createEmployeeFromDTO(EmployeeDTO employeeDTO) {
+	        LoggingUtil.logInfo("Creating employee from DTO");
+
+	        // Check if an employee with the same employeeId or email already exists
+	        Employee existingEmployeeById = employeeRepository.findByEmployeeId(employeeDTO.getEmployeeId());
+	        if (existingEmployeeById != null) {
+	            String errorMessage = "Employee with employeeId " + employeeDTO.getEmployeeId() + " already exists";
+	            LoggingUtil.logInfo(errorMessage);
+	            throw new IllegalArgumentException(errorMessage);
+	        }
+
+	        Employee existingEmployeeByEmail = employeeRepository.findByEmailId(employeeDTO.getEmailId());
+	        if (existingEmployeeByEmail != null) {
+	            String errorMessage = "Employee cannot be created since the emailId " + employeeDTO.getEmailId() + " already exists for the employee: " + existingEmployeeByEmail.getEmployeeId();
+	            LoggingUtil.logInfo(errorMessage);
+	            throw new IllegalArgumentException(errorMessage);
+	        }
+
+	        // Create the employee
+	        if (employeeDTO.getEmployeeId() != null && employeeDTO.getEmailId() != null) {
+	            throw new IllegalArgumentException("cannot create employee");
+	        } else {
+	            // Convert DTO to entity
+	            Employee employee = convertToEntity(employeeDTO);
+
+	            // Initialize account balance to zero
+	            employee.setBalance(0.0);
+
+	            if (employeeDTO.getPhoneNumbers() != null && !employeeDTO.getPhoneNumbers().isEmpty()) {
+	                List<PhoneNumber> phoneNumbers = convertPhoneNumbersToEntities(employeeDTO.getPhoneNumbers());
+	                for (PhoneNumber phoneNumber : phoneNumbers) {
+	                    phoneNumber.setEmployee(employee);
+	                }
+	                employee.setPhoneNumbers(phoneNumbers);
+	            }
+
+	            if (employeeDTO.getVoterID() != null) {
+	                VoterID voterID = convertVoterIDToEntity(employeeDTO.getVoterID());
+	                employee.setVoterID(voterID);
+	            }
+
+	            createEmployee(employee);
+	            LoggingUtil.logInfo("Employee created successfully");
+	        }
+	    }
 
 
-        if (employeeDTO.getPhoneNumbers() != null && !employeeDTO.getPhoneNumbers().isEmpty()) {
-            List<PhoneNumber> phoneNumbers = convertPhoneNumbersToEntities(employeeDTO.getPhoneNumbers());
-            for (PhoneNumber phoneNumber : phoneNumbers) {
-                phoneNumber.setEmployee(employee);
-            }
-            employee.setPhoneNumbers(phoneNumbers);
-        }
-
-        if (employeeDTO.getVoterID() != null) {
-            VoterID voterID = convertVoterIDToEntity(employeeDTO.getVoterID());
-            employee.setVoterID(voterID);
-        }
-
-        createEmployee(employee);
-       LoggingUtil.logInfo("Employee created successfully");
-    }
-
-    private void createEmployee(Employee employee) {
-        try {
-            employeeRepository.save(employee);
-        } catch (Throwable t) {
-            throw new IllegalArgumentException("Failed to create employee: " + t.toString());
-        }
-    }
+	    private void createEmployee(Employee employee) {
+	        try {
+	            employeeRepository.save(employee);
+	        } catch (Throwable t) {
+	            throw new IllegalArgumentException("Failed to create employee: " + t.toString());
+	        }
+	    }
 
 //	private boolean isValidEmail(String email) {
 //	    // Add your email validation logic here, for example, using regex or other checks.
@@ -112,7 +128,7 @@ public class EmployeeService {
 //	}
 
     public EmployeeDTO getEmployeeByIdWithAccount(Integer employeeId) {
-        Optional<Employee> employee = employeeRepository.findByIdWithAccountDetails(employeeId);
+        Optional<Employee> employee = employeeRepository.findByIdWithDetails(employeeId);
         if (employee.isPresent()) {
             EmployeeDTO employeeDTO = convertToDTO(employee.get());
             
@@ -144,88 +160,94 @@ public class EmployeeService {
 
     @Transactional
     public ResponseEntity<String> updateEmployeeDetails(Integer employeeId, EmployeeUpdateRequestDTO employeeUpdateRequestDTO) {
-       LoggingUtil.logInfo("Updating employee details");
+        LoggingUtil.logInfo("Updating employee details");
         Optional<Employee> optionalEmployee = employeeRepository.findById(employeeId);
+        
         if (optionalEmployee.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Employee not found with id: " + employeeId);
         }
+        
         Employee existingEmployee = optionalEmployee.get();
 
-        // Update the employee details
-        existingEmployee.setName(employeeUpdateRequestDTO.getName());
-        existingEmployee.setDob(employeeUpdateRequestDTO.getDob());
-        existingEmployee.setManagerId(employeeUpdateRequestDTO.getManagerId());
-        existingEmployee.setSalary(employeeUpdateRequestDTO.getSalary());
-        existingEmployee.setEmailId(employeeUpdateRequestDTO.getEmailId());
-
+        // Update the fields that are present in the request body
+        if (employeeUpdateRequestDTO.getName() != null) {
+            existingEmployee.setName(employeeUpdateRequestDTO.getName());
+        }
         
-        // Update or create the phone numbers
+        if (employeeUpdateRequestDTO.getDob() != null) {
+            existingEmployee.setDob(employeeUpdateRequestDTO.getDob());
+        }
+        
+        if (employeeUpdateRequestDTO.getManagerId() != null) {
+            existingEmployee.setManagerId(employeeUpdateRequestDTO.getManagerId());
+        }
+        
+        if (employeeUpdateRequestDTO.getSalary() != null) {
+            existingEmployee.setSalary(employeeUpdateRequestDTO.getSalary());
+        }
+        
+        if (employeeUpdateRequestDTO.getEmailId() != null) {
+            existingEmployee.setEmailId(employeeUpdateRequestDTO.getEmailId());
+        }
+        
+        // Update or create phone numbers
         if (employeeUpdateRequestDTO.getPhoneNumbers() != null) {
             for (PhoneNumberDTO phoneNumberDTO : employeeUpdateRequestDTO.getPhoneNumbers()) {
-                PhoneNumber phoneNumber;
                 if (phoneNumberDTO.getPhoneId() != null) {
                     // Update existing phone number if found
                     Optional<PhoneNumber> optionalPhoneNumber = phoneNumberRepository.findById(phoneNumberDTO.getPhoneId());
-                    if (optionalPhoneNumber.isPresent()) {
-                        phoneNumber = optionalPhoneNumber.get();
+                    optionalPhoneNumber.ifPresent(phoneNumber -> {
                         phoneNumber.setPhoneNumber(phoneNumberDTO.getPhoneNumber());
                         phoneNumber.setProvider(phoneNumberDTO.getProvider());
                         phoneNumber.setType(phoneNumberDTO.getType());
-                    } else {
-                        // If phoneId is not found, create a new PhoneNumber entity
-                        phoneNumber = new PhoneNumber();
-                        phoneNumber.setPhoneNumber(phoneNumberDTO.getPhoneNumber());
-                        phoneNumber.setProvider(phoneNumberDTO.getProvider());
-                        phoneNumber.setType(phoneNumberDTO.getType());
-                        phoneNumber.setEmployee(existingEmployee);
-                    }
+                    });
                 } else {
-                    // If phoneId is not provided, create a new PhoneNumber entity
-                    phoneNumber = new PhoneNumber();
+                    // Create a new PhoneNumber entity
+                    PhoneNumber phoneNumber = new PhoneNumber();
                     phoneNumber.setPhoneNumber(phoneNumberDTO.getPhoneNumber());
                     phoneNumber.setProvider(phoneNumberDTO.getProvider());
                     phoneNumber.setType(phoneNumberDTO.getType());
                     phoneNumber.setEmployee(existingEmployee);
+                    phoneNumberRepository.save(phoneNumber);
                 }
-                phoneNumberRepository.save(phoneNumber);
             }
         }
 
-        // Update or create the voter ID
+        // Update or create voter ID
         if (employeeUpdateRequestDTO.getVoterID() != null) {
             VoterIDDTO voterIDDTO = employeeUpdateRequestDTO.getVoterID();
             if (voterIDDTO.getVoterId() != null) {
                 // Update existing voter ID if found
                 Optional<VoterID> optionalVoterID = voterIDRepository.findById(voterIDDTO.getVoterId());
-                if (optionalVoterID.isPresent()) {
-                    VoterID voterID = optionalVoterID.get();
+                optionalVoterID.ifPresent(voterID -> {
                     voterID.setVoterNumber(voterIDDTO.getVoterNumber());
                     voterID.setCity(voterIDDTO.getCity());
-                    existingEmployee.setVoterID(voterID);
-                } else {
-                    // If voterId is not found, create a new VoterID entity
-                    VoterID newVoterID = convertVoterIDToEntity(voterIDDTO);
-                    existingEmployee.setVoterID(newVoterID);
-                }
+                });
             } else {
-                // If voterId is not provided, create a new VoterID entity
+                // Create a new VoterID entity
                 VoterID newVoterID = convertVoterIDToEntity(voterIDDTO);
                 existingEmployee.setVoterID(newVoterID);
             }
         }
 
-        existingEmployee.setCreatedDateTime(existingEmployee.getCreatedDateTime()); // Preserve the existing createdDateTime
-        existingEmployee.setUpdatedDateTime(LocalDateTime.now()); // Set the updatedDateTime to the current timestamp
+        // Update timestamps
+        existingEmployee.setUpdatedDateTime(LocalDateTime.now());
+        
+        // Save the updated employee
         employeeRepository.save(existingEmployee);
 
         return ResponseEntity.ok("Employee details updated successfully");
     }
 
     public ResponseEntity<String> deleteEmployee(Integer id) {
-       LoggingUtil.logInfo("Deleting employee");
+        LoggingUtil.logInfo("Deleting employee");
         try {
-            employeeRepository.deleteById(id);
-            return ResponseEntity.ok("Employee deleted successfully");
+            if (employeeRepository.existsById(id)) {
+                employeeRepository.deleteById(id);
+                return ResponseEntity.ok("Employee deleted successfully");
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Employee with ID " + id + " doesn't exist");
+            }
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to delete employee: " + e.getMessage());
         }
@@ -243,7 +265,8 @@ public class EmployeeService {
     
 // --------------------------------------------------------------------------------------------------------------------------------
     public String createAccount(Integer employeeId, String accountType) {
-    	LoggingUtil.logInfo("Creating account for employee with ID: {} and account type: {}", employeeId, accountType);
+        LoggingUtil.logInfo("Creating account for employee with ID: {} and account type: {}", employeeId, accountType);
+        
         // Check if the employee exists in the Employee table
         Optional<Employee> optionalEmployee = employeeRepository.findById(employeeId);
         if (optionalEmployee.isEmpty()) {
@@ -256,7 +279,6 @@ public class EmployeeService {
         createAccountRequest.setEmployeeId(employeeId);
         createAccountRequest.setEmployeeName(employee.getName());
         createAccountRequest.setAccountType(accountType);
-        
 
         try {
             HttpHeaders headers = new HttpHeaders();
@@ -273,8 +295,8 @@ public class EmployeeService {
                         employee.setAccountNumber(response.getAccountNumber());
                         employee.setAccountType(accountType);
                         employeeRepository.save(employee);
-                        return "Account created successfully. Account Number: " + response.getAccountNumber() + ". " + response.getMessage();                
-                        } else {
+                        return "Account created successfully. Account Number: " + response.getAccountNumber() + ". " + response.getMessage();
+                    } else {
                         return "Account creation failed. " + response.getMessage();
                     }
                 }
@@ -287,11 +309,35 @@ public class EmployeeService {
 
         return "Failed to create an account for the employee with ID: " + employeeId;
     }
+
     
 //------------------------------------------------------------------------------------------------------------------------
     public String depositAmount(Integer employeeId, Double amount) {
-    	 LoggingUtil.logInfo("Depositing amount for Employee ID: {}, Amount: {}", employeeId, amount);
-    	// Prepare DepositRequest
+        LoggingUtil.logInfo("Depositing amount for Employee ID: {}, Amount: {}", employeeId, amount);
+
+        // Check if the employee exists
+        Optional<Employee> optionalEmployee = employeeRepository.findById(employeeId);
+        if (optionalEmployee.isEmpty()) {
+            LoggingUtil.logError("Employee not found with ID: {}", employeeId);
+            throw new RuntimeException("Employee not found with ID: " + employeeId);
+        }
+
+        Employee employee = optionalEmployee.get();
+        String accountNumber = employee.getAccountNumber();
+
+        // Check if an account for the employee exists
+        if (accountNumber == null || accountNumber.isEmpty()) {
+            LoggingUtil.logError("No account found for Employee ID: {}", employeeId);
+            throw new RuntimeException("No account found for Employee ID: " + employeeId);
+        }
+
+        // Validate the deposit amount
+        if (amount <= 0) {
+            LoggingUtil.logError("Invalid deposit amount: {}", amount);
+            throw new IllegalArgumentException("Invalid deposit amount: " + amount);
+        }
+
+        // Prepare DepositRequest
         DepositRequest depositRequest = new DepositRequest();
         depositRequest.setEmployeeId(employeeId);
         depositRequest.setAmount(amount);
@@ -308,23 +354,60 @@ public class EmployeeService {
             ResponseEntity<String> responseEntity = restTemplate.postForEntity(bankDepositUrl, request, String.class);
 
             if (responseEntity.getStatusCode() == HttpStatus.OK) {
-            	 LoggingUtil.logInfo("Amount deposited successfully for Employee ID: {}, Amount: {}", employeeId, amount);
-            	return responseEntity.getBody();
+                LoggingUtil.logInfo("Amount deposited successfully for Employee ID: {}, Amount: {}", employeeId, amount);
+
+                // Update employee balance and save
+                Double currentBalance = employee.getBalance();
+                Double updatedBalance = currentBalance + amount;
+                employee.setBalance(updatedBalance);
+                employeeRepository.save(employee);
+
+                return responseEntity.getBody();
             } else {
-            	 LoggingUtil.logError("Failed to deposit amount for Employee ID: {}, Amount: {}", employeeId, amount);
+                LoggingUtil.logError("Failed to deposit amount for Employee ID: {}, Amount: {}", employeeId, amount);
                 return "Failed to deposit amount for Employee ID: " + employeeId;
             }
         } catch (Exception e) {
-        	 LoggingUtil.logError("Exception occurred while hitting deposit amount using RestTemplate: {}", e.getMessage());
+            LoggingUtil.logError("Exception occurred while hitting deposit amount using RestTemplate: {}", e.getMessage());
             return "Exception occurred while hitting deposit amount using RestTemplate: " + e.getMessage();
         }
     }
-    
-    
+  
+  
+
     //--------------------------------------------------------------------------------------------------------------
 
     public String withdrawAmount(Integer employeeId, Double amount) {
     	LoggingUtil.logInfo("Withdrawing amount for Employee ID: {}, Amount: {}", employeeId, amount);
+    	  
+    	 // Check if the employee exists
+        Optional<Employee> optionalEmployee = employeeRepository.findById(employeeId);
+        if (optionalEmployee.isEmpty()) {
+            LoggingUtil.logError("Employee not found with ID: {}", employeeId);
+            throw new RuntimeException("Employee not found with ID: " + employeeId);
+        }
+
+        Employee employee = optionalEmployee.get();
+
+        // Check if an account for the employee exists
+        if (employee.getAccountNumber() == null || employee.getAccountNumber().isEmpty()) {
+            LoggingUtil.logError("No account found for Employee ID: {}", employeeId);
+            throw new RuntimeException("No account found for Employee ID: " + employeeId);
+        }
+    	
+    	 // Perform the withdraw operation
+        if (amount < 0) {
+            throw new IllegalArgumentException("Withdraw amount cannot be negative.");
+        }
+
+        Double Balance = getCurrentBalance(employeeId);
+        if (amount > Balance) {
+            throw new InsufficientBalanceException("Insufficient balance for Employee ID " + employeeId);
+        }
+
+        LoggingUtil.logInfo("Withdrawing amount for Employee ID: {}, Amount: {}", employeeId, amount);
+
+    	
     	// Prepare WithdrawRequest
         WithdrawRequest withdrawRequest = new WithdrawRequest();
         withdrawRequest.setEmployeeId(employeeId);
@@ -342,122 +425,101 @@ public class EmployeeService {
             ResponseEntity<String> responseEntity = restTemplate.postForEntity(bankWithdrawalUrl, request, String.class);
 
             if (responseEntity.getStatusCode() == HttpStatus.OK) {
-            	LoggingUtil.logInfo("Amount withdrawn successfully for Employee ID: {}, Amount: {}", employeeId, amount);
+                LoggingUtil.logInfo("Amount withdrawn successfully for Employee ID: {}, Amount: {}", employeeId, amount);
+
+             // Update employee balance and save
+                Double CurrentBalance = employee.getBalance();
+                Double updatedBalance = CurrentBalance - amount;
+                employee.setBalance(updatedBalance);
+                employeeRepository.save(employee);
+
                 return responseEntity.getBody();
             } else {
-            	 LoggingUtil.logError("Failed to withdraw amount for Employee ID: {}, Amount: {}", employeeId, amount);
+                LoggingUtil.logError("Failed to withdraw amount for Employee ID: {}, Amount: {}", employeeId, amount);
                 return "Failed to withdraw amount for Employee ID: " + employeeId;
             }
         } catch (Exception e) {
-        	 LoggingUtil.logError("Exception occurred while hitting withdraw amount using RestTemplate: {}", e.getMessage());
+            LoggingUtil.logError("Exception occurred while hitting withdraw amount using RestTemplate: {}", e.getMessage());
             return "Exception occurred while hitting withdraw amount using RestTemplate: " + e.getMessage();
         }
     }
 
-
 // -------------------------------------------------------------------------------------------------------------------
 
-    public double getAccountBalance(Integer employeeId) {
+    public Double getCurrentBalance(Integer employeeId) {
         // Check if the employee exists in the Employee table
         Optional<Employee> optionalEmployee = employeeRepository.findById(employeeId);
         if (optionalEmployee.isEmpty()) {
             throw new RuntimeException("Employee not found with ID: " + employeeId);
         }
 
-        Employee employee = optionalEmployee.get();
+       Employee employee = optionalEmployee.get();
         return employee.getBalance();
     }
+   
 
 //-----------------------------------------------------------------------------------------------------------------
-    
-//    public List<AccountHistoryResponse> getTransactionDetails(Integer employeeId, Date startDate, Date endDate) {
-//        LoggingUtil.logInfo("Checking Account History for employee with ID: {}", employeeId);
-//
-//        // Check if the employee exists in the Employee table
-//        Optional<Employee> optionalEmployee = employeeRepository.findById(employeeId);
-//        if (optionalEmployee.isEmpty()) {
-//            throw new IllegalArgumentException("Employee not found with ID: " + employeeId);
-//        }
-//
-//        AccountHistoryRequest accountHistoryRequest = new AccountHistoryRequest();
-//        accountHistoryRequest.setEmployeeId(employeeId);
-//        accountHistoryRequest.setStartDate(startDate);
-//        accountHistoryRequest.setEndDate(endDate);
-//
-//        // Set Content-Type header for JSON
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.setContentType(MediaType.APPLICATION_JSON);
-//
-//        // Create HttpEntity
-//        HttpEntity<AccountHistoryRequest> requestEntity = new HttpEntity<>(accountHistoryRequest, headers);
-//
-//        try {
-//            // Send the HTTP POST request to BMS to get account history
-//            ResponseEntity<AccountHistoryResponse[]> responseEntity = restTemplate.exchange(
-//                bankAccountHistoryUrl,
-//                HttpMethod.POST,
-//                requestEntity,
-//                AccountHistoryResponse[].class
-//            );
-//
-//            if (responseEntity != null && responseEntity.getStatusCode().equals(HttpStatus.OK)) {
-//            	LoggingUtil.logInfo("Checking Account History for employee with ID: {}", employeeId);
-//                return Arrays.asList(responseEntity.getBody());
-//            } else {
-//            	LoggingUtil.logError("Failed to retrieve account history for Employee ID: {}", employeeId);
-//                throw new IllegalArgumentException("Failed to retrieve account history for Employee ID: " + employeeId);
-//            }
-//        } catch (RestClientException e) {
-//        	  LoggingUtil.logError("Exception occurred while hitting account-history using RestTemplate: {}", e.getMessage());
-//            throw new IllegalArgumentException("Exception occurred while hitting account-history using RestTemplate", e);
-//        }
-//    }
-//
-    public List<AccountHistoryResponse> getTransactionDetails(Integer employeeId, Date startDate, Date endDate) {
-        LoggingUtil.logInfo("Checking Account History for employee with ID: {}", employeeId);
 
-        // Check if the employee exists in the Employee table
-        Optional<Employee> optionalEmployee = employeeRepository.findById(employeeId);
-        if (optionalEmployee.isEmpty()) {
-            throw new IllegalArgumentException("Employee not found with ID: " + employeeId);
+    public List<AccountHistoryResponse> getTransactionDetails(Integer employeeId, DateRangeRequest dateRangeRequest) {
+        LoggingUtil.logInfo("Fetching transaction details for employee ID: {}", employeeId);
+
+        LocalDateTime startDate = dateRangeRequest.getStartDateTime();
+        LocalDateTime endDate = dateRangeRequest.getEndDateTime();
+
+        // Validate date range
+        if (startDate == null || endDate == null || startDate.isAfter(endDate)) {
+            LoggingUtil.logError("Invalid date range provided for employee ID: {}", employeeId);
+            throw new IllegalArgumentException("Invalid date range.");
         }
 
-        AccountHistoryRequest accountHistoryRequest = new AccountHistoryRequest();
-        accountHistoryRequest.setEmployeeId(employeeId);
-        accountHistoryRequest.setStartDate(startDate);
-        accountHistoryRequest.setEndDate(endDate);
+        // Check if the employee exists
+        Optional<Employee> optionalEmployee = employeeRepository.findByIdWithDetails(employeeId);
+        if (optionalEmployee.isEmpty()) {
+            LoggingUtil.logError("Employee not found with ID: {}", employeeId);
+            throw new IllegalArgumentException("Employee not found with ID: " + employeeId);
+        } 
+        Employee employee = optionalEmployee.get();
 
-        // Set Content-Type header for JSON
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
+        // Fetch the account number from the employee
+        String accountNumber = employee.getAccountNumber();
 
-        // Create HttpEntity
-        HttpEntity<AccountHistoryRequest> requestEntity = new HttpEntity<>(accountHistoryRequest, headers);
+        // Check if the account number exists for the employee
+        if (accountNumber == null || accountNumber.isEmpty()) {
+            LoggingUtil.logError("No account number found for employee ID: {}", employeeId);
+            throw new IllegalArgumentException("No account number found for employee ID: " + employeeId);
+        }
 
+        // Hit the Transaction Details API using RestTemplate
         try {
-            // Send the HTTP POST request to BMS to get account history
+            LoggingUtil.logInfo("Hitting account-history API for employee ID: {}", employeeId);
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+         
+            HttpEntity<DateRangeRequest> requestEntity = new HttpEntity<>(dateRangeRequest, headers);
+
+            // Make a POST request to retrieve account history
             ResponseEntity<AccountHistoryResponse[]> responseEntity = restTemplate.exchange(
-                bankAccountHistoryUrl,
-                HttpMethod.POST,
+                bankAccountHistoryUrl + "/" + accountNumber,
+                HttpMethod.POST,  // Corrected HttpMethod to POST
                 requestEntity,
                 AccountHistoryResponse[].class
             );
 
-            if (responseEntity != null && responseEntity.getStatusCode().equals(HttpStatus.OK)) {
-                LoggingUtil.logInfo("Checking Account History for employee with ID: {}", employeeId);
+
+            if (responseEntity != null && responseEntity.getStatusCode().is2xxSuccessful()) {
+                LoggingUtil.logInfo("Retrieved Account History for employee with ID: {}", employeeId);
                 return Arrays.asList(responseEntity.getBody());
             } else {
                 LoggingUtil.logError("Failed to retrieve account history for Employee ID: {}", employeeId);
                 throw new IllegalArgumentException("Failed to retrieve account history for Employee ID: " + employeeId);
             }
         } catch (RestClientException e) {
-            LoggingUtil.logError("Exception occurred while hitting account-history using RestTemplate: {}", e.getMessage());
+            LoggingUtil.logError("Exception occurred while hitting account-history using RestTemplate for employee ID: {}", employeeId);
             throw new IllegalArgumentException("Exception occurred while hitting account-history using RestTemplate", e);
         }
     }
 
-    
-    
 // --------------------------------------------------------------------------------------------------
 
 	// Helper methods for conversion
