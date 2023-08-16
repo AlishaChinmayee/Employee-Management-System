@@ -35,7 +35,7 @@ public class PhoneNumber {
 
 
 
-    @NotBlank
+    
     @Column(name = "PHONE_NUMBER")
     private String phoneNumber;
 

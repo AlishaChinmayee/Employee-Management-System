@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -65,53 +63,47 @@ public class EmployeeService {
 	    private final String bankAccountHistoryUrl = "http://localhost:8989/BMS/transactions";
 
 
-
 	    public void createEmployeeFromDTO(EmployeeDTO employeeDTO) {
 	        LoggingUtil.logInfo("Creating employee from DTO");
 
-	        // Check if an employee with the same employeeId or email already exists
 	        Employee existingEmployeeById = employeeRepository.findByEmployeeId(employeeDTO.getEmployeeId());
-	        if (existingEmployeeById != null) {
+	        Employee existingEmployeeByEmail = employeeRepository.findByEmailId(employeeDTO.getEmailId());
+
+	        if (existingEmployeeById != null && existingEmployeeByEmail != null) {
+	            String errorMessage = "Employee with both employeeId and emailId already exists";
+	            LoggingUtil.logInfo(errorMessage);
+	            throw new IllegalArgumentException(errorMessage);
+	        } else if (existingEmployeeById != null) {
 	            String errorMessage = "Employee with employeeId " + employeeDTO.getEmployeeId() + " already exists";
 	            LoggingUtil.logInfo(errorMessage);
 	            throw new IllegalArgumentException(errorMessage);
-	        }
-
-	        Employee existingEmployeeByEmail = employeeRepository.findByEmailId(employeeDTO.getEmailId());
-	        if (existingEmployeeByEmail != null) {
-	            String errorMessage = "Employee cannot be created since the emailId " + employeeDTO.getEmailId() + " already exists for the employee: " + existingEmployeeByEmail.getEmployeeId();
+	        } else if (existingEmployeeByEmail != null) {
+	            String errorMessage = "Employee with emailId " + employeeDTO.getEmailId() + " already exists";
 	            LoggingUtil.logInfo(errorMessage);
 	            throw new IllegalArgumentException(errorMessage);
 	        }
 
-	        // Create the employee
-	        if (employeeDTO.getEmployeeId() != null && employeeDTO.getEmailId() != null) {
-	            throw new IllegalArgumentException("cannot create employee");
-	        } else {
-	            // Convert DTO to entity
-	            Employee employee = convertToEntity(employeeDTO);
+	        // Proceed with employee creation logic
+	        Employee employee = convertToEntity(employeeDTO);
 
-	            // Initialize account balance to zero
-	            employee.setBalance(0.0);
+	        employee.setBalance(0.0);
 
-	            if (employeeDTO.getPhoneNumbers() != null && !employeeDTO.getPhoneNumbers().isEmpty()) {
-	                List<PhoneNumber> phoneNumbers = convertPhoneNumbersToEntities(employeeDTO.getPhoneNumbers());
-	                for (PhoneNumber phoneNumber : phoneNumbers) {
-	                    phoneNumber.setEmployee(employee);
-	                }
-	                employee.setPhoneNumbers(phoneNumbers);
+	        if (employeeDTO.getPhoneNumbers() != null && !employeeDTO.getPhoneNumbers().isEmpty()) {
+	            List<PhoneNumber> phoneNumbers = convertPhoneNumbersToEntities(employeeDTO.getPhoneNumbers());
+	            for (PhoneNumber phoneNumber : phoneNumbers) {
+	                phoneNumber.setEmployee(employee);
 	            }
-
-	            if (employeeDTO.getVoterID() != null) {
-	                VoterID voterID = convertVoterIDToEntity(employeeDTO.getVoterID());
-	                employee.setVoterID(voterID);
-	            }
-
-	            createEmployee(employee);
-	            LoggingUtil.logInfo("Employee created successfully");
+	            employee.setPhoneNumbers(phoneNumbers);
 	        }
-	    }
 
+	        if (employeeDTO.getVoterID() != null) {
+	            VoterID voterID = convertVoterIDToEntity(employeeDTO.getVoterID());
+	            employee.setVoterID(voterID);
+	        }
+
+	        createEmployee(employee);
+	        LoggingUtil.logInfo("Employee created successfully");
+	    }
 
 	    private void createEmployee(Employee employee) {
 	        try {
@@ -120,12 +112,6 @@ public class EmployeeService {
 	            throw new IllegalArgumentException("Failed to create employee: " + t.toString());
 	        }
 	    }
-
-//	private boolean isValidEmail(String email) {
-//	    // Add your email validation logic here, for example, using regex or other checks.
-//	    // For simplicity, let's assume any non-empty string is considered a valid email.
-//	    return email != null && !email.isEmpty();
-//	}
 
     public EmployeeDTO getEmployeeByIdWithAccount(Integer employeeId) {
         Optional<Employee> employee = employeeRepository.findByIdWithDetails(employeeId);
@@ -143,102 +129,108 @@ public class EmployeeService {
             throw new IllegalArgumentException("Employee not found with ID: " + employeeId);
         }
     }
-
-
+    
+    
     public ResponseEntity<List<EmployeeDTO>> getEmployeesByManagerId(Integer managerId) {
-       LoggingUtil.logInfo("Fetching employees by manager ID");
+        LoggingUtil.logInfo("Fetching employees by manager ID");
         List<Employee> employees = employeeRepository.findByManagerId(managerId);
-        if (!employees.isEmpty()) {
-            List<EmployeeDTO> employeeDTOs = employees.stream()
-                    .map(this::convertToDTO)
-                    .collect(Collectors.toList());
+        
+        List<EmployeeDTO> employeeDTOs = new ArrayList<>();
+        for (Employee employee : employees) {
+            employeeDTOs.add(convertToDTO(employee));
+        }
+        
+        if (!employeeDTOs.isEmpty()) {
             return ResponseEntity.ok(employeeDTOs);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(List.of());
         }
     }
 
-    @Transactional
     public ResponseEntity<String> updateEmployeeDetails(Integer employeeId, EmployeeUpdateRequestDTO employeeUpdateRequestDTO) {
-        LoggingUtil.logInfo("Updating employee details");
         Optional<Employee> optionalEmployee = employeeRepository.findById(employeeId);
-        
+
         if (optionalEmployee.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Employee not found with id: " + employeeId);
         }
-        
+
         Employee existingEmployee = optionalEmployee.get();
 
         // Update the fields that are present in the request body
         if (employeeUpdateRequestDTO.getName() != null) {
             existingEmployee.setName(employeeUpdateRequestDTO.getName());
         }
-        
+
         if (employeeUpdateRequestDTO.getDob() != null) {
             existingEmployee.setDob(employeeUpdateRequestDTO.getDob());
         }
-        
+
         if (employeeUpdateRequestDTO.getManagerId() != null) {
             existingEmployee.setManagerId(employeeUpdateRequestDTO.getManagerId());
         }
-        
+
         if (employeeUpdateRequestDTO.getSalary() != null) {
             existingEmployee.setSalary(employeeUpdateRequestDTO.getSalary());
         }
-        
+
         if (employeeUpdateRequestDTO.getEmailId() != null) {
             existingEmployee.setEmailId(employeeUpdateRequestDTO.getEmailId());
         }
-        
-        // Update or create phone numbers
-        if (employeeUpdateRequestDTO.getPhoneNumbers() != null) {
-            for (PhoneNumberDTO phoneNumberDTO : employeeUpdateRequestDTO.getPhoneNumbers()) {
-                if (phoneNumberDTO.getPhoneId() != null) {
-                    // Update existing phone number if found
-                    Optional<PhoneNumber> optionalPhoneNumber = phoneNumberRepository.findById(phoneNumberDTO.getPhoneId());
-                    optionalPhoneNumber.ifPresent(phoneNumber -> {
-                        phoneNumber.setPhoneNumber(phoneNumberDTO.getPhoneNumber());
-                        phoneNumber.setProvider(phoneNumberDTO.getProvider());
-                        phoneNumber.setType(phoneNumberDTO.getType());
-                    });
-                } else {
-                    // Create a new PhoneNumber entity
-                    PhoneNumber phoneNumber = new PhoneNumber();
-                    phoneNumber.setPhoneNumber(phoneNumberDTO.getPhoneNumber());
-                    phoneNumber.setProvider(phoneNumberDTO.getProvider());
-                    phoneNumber.setType(phoneNumberDTO.getType());
-                    phoneNumber.setEmployee(existingEmployee);
-                    phoneNumberRepository.save(phoneNumber);
-                }
-            }
+
+        if (employeeUpdateRequestDTO.getPhoneNumbers() != null && !employeeUpdateRequestDTO.getPhoneNumbers().isEmpty()) {
+            List<PhoneNumber> updatedPhoneNumbers = updateOrCreatePhoneNumbers(existingEmployee, employeeUpdateRequestDTO.getPhoneNumbers());
+            existingEmployee.setPhoneNumbers(updatedPhoneNumbers);
         }
 
         // Update or create voter ID
         if (employeeUpdateRequestDTO.getVoterID() != null) {
-            VoterIDDTO voterIDDTO = employeeUpdateRequestDTO.getVoterID();
-            if (voterIDDTO.getVoterId() != null) {
-                // Update existing voter ID if found
-                Optional<VoterID> optionalVoterID = voterIDRepository.findById(voterIDDTO.getVoterId());
-                optionalVoterID.ifPresent(voterID -> {
-                    voterID.setVoterNumber(voterIDDTO.getVoterNumber());
-                    voterID.setCity(voterIDDTO.getCity());
-                });
+            if (existingEmployee.getVoterID() != null) {
+                updateVoterID(existingEmployee.getVoterID(), employeeUpdateRequestDTO.getVoterID());
             } else {
-                // Create a new VoterID entity
-                VoterID newVoterID = convertVoterIDToEntity(voterIDDTO);
+                VoterID newVoterID = convertVoterIDToEntity(employeeUpdateRequestDTO.getVoterID());
                 existingEmployee.setVoterID(newVoterID);
             }
         }
 
         // Update timestamps
         existingEmployee.setUpdatedDateTime(LocalDateTime.now());
-        
+
         // Save the updated employee
         employeeRepository.save(existingEmployee);
 
         return ResponseEntity.ok("Employee details updated successfully");
     }
 
+    private List<PhoneNumber> updateOrCreatePhoneNumbers(Employee employee, List<PhoneNumberDTO> phoneNumberDTOs) {
+        List<PhoneNumber> updatedPhoneNumbers = new ArrayList<>();
+        for (PhoneNumberDTO phoneNumberDTO : phoneNumberDTOs) {
+            if (phoneNumberDTO.getPhoneId() != null) {
+                Optional<PhoneNumber> optionalPhoneNumber = phoneNumberRepository.findById(phoneNumberDTO.getPhoneId());
+                optionalPhoneNumber.ifPresent(phoneNumber -> {
+                    phoneNumber.setPhoneNumber(phoneNumberDTO.getPhoneNumber());
+                    phoneNumber.setProvider(phoneNumberDTO.getProvider());
+                    phoneNumber.setType(phoneNumberDTO.getType());
+                    updatedPhoneNumbers.add(phoneNumber);
+                });
+            } else {
+                PhoneNumber newPhoneNumber = new PhoneNumber();
+                newPhoneNumber.setPhoneNumber(phoneNumberDTO.getPhoneNumber());
+                newPhoneNumber.setProvider(phoneNumberDTO.getProvider());
+                newPhoneNumber.setType(phoneNumberDTO.getType());
+                newPhoneNumber.setEmployee(employee);
+                updatedPhoneNumbers.add(newPhoneNumber);
+            }
+        }
+        return updatedPhoneNumbers;
+    }
+
+    private void updateVoterID(VoterID existingVoterID, VoterIDDTO voterIDDTO) {
+        existingVoterID.setVoterNumber(voterIDDTO.getVoterNumber());
+        existingVoterID.setCity(voterIDDTO.getCity());
+    }
+
+    
+    
     public ResponseEntity<String> deleteEmployee(Integer id) {
         LoggingUtil.logInfo("Deleting employee");
         try {

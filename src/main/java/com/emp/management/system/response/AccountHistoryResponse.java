@@ -4,16 +4,25 @@ import java.time.LocalDateTime;
 
 public class AccountHistoryResponse {
 	  
-	    
+	    private String transactionId;
 	    private String transactionType;
-
 	    private String customerAccountNumber;
-
 	    private Integer employeeId;
-
+	    private Double balance;
+	    private Double transactionAmount;
 	    private LocalDateTime dateOfTransaction;
+	    
+		public AccountHistoryResponse() {
+			
+		}
 
-		
+		public String getTransactionId() {
+			return transactionId;
+		}
+
+		public void setTransactionId(String transactionId) {
+			this.transactionId = transactionId;
+		}
 
 		public String getTransactionType() {
 			return transactionType;
@@ -39,6 +48,22 @@ public class AccountHistoryResponse {
 			this.employeeId = employeeId;
 		}
 
+		public Double getBalance() {
+			return balance;
+		}
+
+		public void setBalance(Double balance) {
+			this.balance = balance;
+		}
+
+		public Double getTransactionAmount() {
+			return transactionAmount;
+		}
+
+		public void setTransactionAmount(Double transactionAmount) {
+			this.transactionAmount = transactionAmount;
+		}
+
 		public LocalDateTime getDateOfTransaction() {
 			return dateOfTransaction;
 		}
@@ -46,8 +71,8 @@ public class AccountHistoryResponse {
 		public void setDateOfTransaction(LocalDateTime dateOfTransaction) {
 			this.dateOfTransaction = dateOfTransaction;
 		}
-
-
 	    
+	    
+	
 	    
 }
