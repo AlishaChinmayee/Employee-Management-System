@@ -10,16 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-//import javax.persistence.CascadeType;
-//import javax.persistence.Column;
-//import javax.persistence.Entity;
-//import javax.persistence.FetchType;
-//import javax.persistence.Id;
-//import javax.persistence.OneToMany;
-//import javax.persistence.OneToOne;
-//import javax.persistence.PrePersist;
-//import javax.persistence.PreUpdate;
-//import javax.persistence.Table;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.ValidationException;
@@ -38,7 +28,6 @@ import javax.validation.constraints.Size;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;

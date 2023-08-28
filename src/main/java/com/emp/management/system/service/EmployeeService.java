@@ -121,7 +121,7 @@ public class EmployeeService {
             // Set account details
             employeeDTO.setAccountNumber(employee.get().getAccountNumber());
             employeeDTO.setAccountType(employee.get().getAccountType());
-            employeeDTO.setBalance(employee.get().getBalance());
+//            employeeDTO.setBalance(employee.get().getBalance());
 
             return employeeDTO;
         } else {
@@ -515,7 +515,7 @@ public class EmployeeService {
 // --------------------------------------------------------------------------------------------------
 
 	// Helper methods for conversion
-    private Employee convertToEntity(EmployeeDTO employeeDTO) {
+    public Employee convertToEntity(EmployeeDTO employeeDTO) {
         Employee employee = new Employee();
         employee.setEmployeeId(employeeDTO.getEmployeeId());
         employee.setName(employeeDTO.getName());
@@ -590,7 +590,7 @@ public class EmployeeService {
      // Populate the fields from the Account object
         employeeDTO.setAccountNumber(employee.getAccountNumber());
         employeeDTO.setAccountType(employee.getAccountType());
-        employeeDTO.setBalance(employee.getBalance());
+//        employeeDTO.setBalance(employee.getBalance());
 
         return employeeDTO;
     }

@@ -12,6 +12,7 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,15 +36,15 @@ import com.emp.management.system.utils.LoggingUtil;
 
 @Validated
 @RestController
-@RequestMapping("/employees")
+@RequestMapping("/EMS")
 public class EmployeeController {
 	
 	@Autowired
     private  EmployeeService employeeService;
 	
 		
-	
-    @PostMapping(value = "/create", consumes = MediaType.APPLICATION_JSON_VALUE)
+//	 @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping(value = "/create-new-employee", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> createEmployee(@RequestBody @Valid EmployeeDTO employeeDTO) {
         try {
             employeeService.createEmployeeFromDTO(employeeDTO);
@@ -55,6 +56,8 @@ public class EmployeeController {
         }
     }
 
+	 
+//	 @PreAuthorize("hasAnyRole('NORMAL', 'ADMIN')")
     @GetMapping("/{id}")
     public ResponseEntity<?> getEmployeeByIdWithAccount(@PathVariable Integer id) {
         try {
@@ -68,6 +71,7 @@ public class EmployeeController {
         }
     }
 
+//    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/managers/{managerId}")
     public ResponseEntity<?> getEmployeesByManagerId(@PathVariable Integer managerId) {
         if (managerId < 101 || managerId > 105) {
@@ -80,7 +84,7 @@ public class EmployeeController {
     }
 
 
-
+//    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/update/{id}")
     public ResponseEntity<String> updateEmployeeDetails(@PathVariable Integer id,
                                                         @RequestBody @Valid EmployeeUpdateRequestDTO employeeUpdateRequestDTO) {
@@ -94,26 +98,30 @@ public class EmployeeController {
         return response;
     }
     
+//    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteEmployee(@PathVariable Integer id) {
         LoggingUtil.logInfo("Request received to delete employee");
         return employeeService.deleteEmployee(id);
     }
 
-    @GetMapping
+//    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/all")
     public ResponseEntity<?> getAllEmployees() {
         LoggingUtil.logInfo("Request received to get all employees");
         return employeeService.getAllEmployees();
     }
     
-    @PostMapping("/create-account")
+//    @PreAuthorize("hasAnyRole('NORMAL', 'ADMIN')")
+    @PostMapping("/BMS/create-account")
     public ResponseEntity<String> createAccount(@RequestBody CreateAccountRequest createAccountRequest) {
         String accountType = createAccountRequest.getAccountType(); 
         String result = employeeService.createAccount(createAccountRequest.getEmployeeId(), accountType);
         return ResponseEntity.ok(result);
     }
     
-    @PostMapping("/deposit")
+//    @PreAuthorize("hasRole('NORMAL')")
+    @PostMapping("/BMS/deposit")
     public ResponseEntity<String> depositAmount(@RequestBody DepositRequest depositRequest) {
         String validationMessage = depositRequest.validate();
 
@@ -137,8 +145,8 @@ public class EmployeeController {
     }
 
 
-    
-    @PostMapping("/withdraw")
+//    @PreAuthorize("hasRole('NORMAL')")
+    @PostMapping("/BMS/withdraw")
     public ResponseEntity<String> withdrawMoney(@RequestBody WithdrawRequest withdrawRequest) {
         String validationError = withdrawRequest.validate();
         
@@ -165,8 +173,8 @@ public class EmployeeController {
     }
 
     
-    
-    @PostMapping("/transactions/{employeeId}")
+//    @PreAuthorize("hasAnyRole('NORMAL', 'ADMIN')")
+    @PostMapping("/BMS/transactions/{employeeId}")
     public ResponseEntity<?> getTransactionDetails(
             @PathVariable Integer employeeId,
             @RequestBody DateRangeRequest dateRangeRequest) {

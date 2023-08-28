@@ -33,42 +33,25 @@
 		</dependency>
 
 		<dependency>
-    <groupId>com.oracle.database.jdbc</groupId>
-    <artifactId>ojdbc8</artifactId>
-    <scope>runtime</scope>
-</dependency>
-
-<!-- Jakarta Bean Validation API -->
-<dependency>
-    <groupId>javax.validation</groupId>
-    <artifactId>validation-api</artifactId>
-    <version>2.0.1.Final</version>
-</dependency>
-
-<!-- Hibernate Validator (Reference Implementation) -->
-<dependency>
-    <groupId>org.hibernate.validator</groupId>
-    <artifactId>hibernate-validator</artifactId>
-   <!-- <version>7.0.1.Final</version>-->
-</dependency>
-
-
-	<!--	 Jakarta Bean Validation API 
+		    <groupId>com.oracle.database.jdbc</groupId>
+		    <artifactId>ojdbc8</artifactId>
+		    <scope>runtime</scope>
+		</dependency>
+			
+			<!-- Jakarta Bean Validation API -->
 		<dependency>
-			<groupId>jakarta.validation</groupId>
-			<artifactId>jakarta.validation-api</artifactId>
-		 <version>${jakarta.validation.version}</version> 	
+		    <groupId>javax.validation</groupId>
+		    <artifactId>validation-api</artifactId>
+		    <version>2.0.1.Final</version>
 		</dependency>
 		
-
-		
-		 Hibernate Validator (Reference Implementation) 
+		<!-- Hibernate Validator (Reference Implementation) -->
 		<dependency>
-			<groupId>org.hibernate.validator</groupId>
-			<artifactId>hibernate-validator</artifactId>
-		 <version>${hibernate.validator.version}</version> 
-		</dependency>-->
+		    <groupId>org.hibernate.validator</groupId>
+		    <artifactId>hibernate-validator</artifactId>
+		</dependency>
 		
+				
 		<!-- Apache Tomcat Jasper -->
         <dependency>
             <groupId>org.apache.tomcat</groupId>
@@ -87,6 +70,30 @@
 			<artifactId>EmployeeManagementSystem</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		
+		 <!-- ... Other dependencies ... -->
+	   <dependency>
+    	<groupId>com.h2database</groupId>
+    	<artifactId>h2</artifactId>
+    	<scope>test</scope> 
+	   </dependency>
+	   
+	   <!-- Mockito extention -->
+		<dependency>
+		    <groupId>org.mockito</groupId>
+		    <artifactId>mockito-junit-jupiter</artifactId>
+		    <scope>test</scope>
+		</dependency>
+
+		<!-- For Lombok -->
+		<dependency>
+		    <groupId>org.projectlombok</groupId>
+		    <artifactId>lombok</artifactId>
+		   <!-- <version>1.18.22</version> --><!-- Use the latest version -->
+		    <scope>provided</scope>
+		</dependency>
+
+		
 	</dependencies>
 
 	<build>

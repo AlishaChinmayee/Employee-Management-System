@@ -37,7 +37,7 @@ public class EmployeeDTO {
 	    private LocalDateTime updatedDateTime;
 	    private String accountNumber;
 	    private String accountType;
-	    private Double balance;
+//	    private Double balance;
 	    
 	    
 		public Integer getEmployeeId() {
@@ -133,12 +133,12 @@ public class EmployeeDTO {
 		public void setAccountNumber(String accountNumber) {
 			this.accountNumber = accountNumber;
 		}
-		public Double getBalance() {
-			return balance;
-		}
-		public void setBalance(Double balance) {
-			this.balance = balance;
-		}
+//		public Double getBalance() {
+//			return balance;
+//		}
+//		public void setBalance(Double balance) {
+//			this.balance = balance;
+//		}
 		 
 
 		
