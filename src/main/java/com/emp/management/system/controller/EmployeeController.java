@@ -42,6 +42,11 @@ public class EmployeeController {
 	@Autowired
     private  EmployeeService employeeService;
 	
+    public EmployeeController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
+    }
+
+	
 		
 //	 @PreAuthorize("hasRole('ADMIN')")
     @PostMapping(value = "/create-new-employee", consumes = MediaType.APPLICATION_JSON_VALUE)

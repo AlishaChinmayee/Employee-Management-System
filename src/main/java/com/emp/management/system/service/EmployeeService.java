@@ -16,7 +16,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
@@ -105,7 +104,7 @@ public class EmployeeService {
 	        LoggingUtil.logInfo("Employee created successfully");
 	    }
 
-	    private void createEmployee(Employee employee) {
+	    public void createEmployee(Employee employee) {
 	        try {
 	            employeeRepository.save(employee);
 	        } catch (Throwable t) {
@@ -461,9 +460,8 @@ public class EmployeeService {
         // Validate date range
         if (startDate == null || endDate == null || startDate.isAfter(endDate)) {
             LoggingUtil.logError("Invalid date range provided for employee ID: {}", employeeId);
-            throw new IllegalArgumentException("Invalid date range.");
+            throw new IllegalArgumentException("Invalid date range provided. Make sure to provide both startDate and endDate.");
         }
-
         // Check if the employee exists
         Optional<Employee> optionalEmployee = employeeRepository.findByIdWithDetails(employeeId);
         if (optionalEmployee.isEmpty()) {

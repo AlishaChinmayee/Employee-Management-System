@@ -120,8 +120,5 @@ public class EmployeeUpdateRequestDTO {
 		this.accountNumber = accountNumber;
 	}
 
-	
-	
-    // Getters and setters
 }
 

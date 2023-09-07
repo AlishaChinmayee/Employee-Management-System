@@ -133,14 +133,6 @@ public class EmployeeDTO {
 		public void setAccountNumber(String accountNumber) {
 			this.accountNumber = accountNumber;
 		}
-//		public Double getBalance() {
-//			return balance;
-//		}
-//		public void setBalance(Double balance) {
-//			this.balance = balance;
-//		}
-		 
-
 		
 		
 		

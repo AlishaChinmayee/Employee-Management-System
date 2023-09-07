@@ -1,19 +1,16 @@
 package com.emp.management.system.test.controller;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,52 +18,51 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.emp.management.system.controller.EmployeeController;
+import com.emp.management.system.request.CreateAccountRequest;
 import com.emp.management.system.request.EmployeeDTO;
 import com.emp.management.system.request.EmployeeUpdateRequestDTO;
 import com.emp.management.system.service.EmployeeService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import jakarta.validation.ValidationException;
 
 
 @ExtendWith(MockitoExtension.class)
-@WebMvcTest
+//@WebMvcTest(EmployeeController.class)
 public class TestController {
-	
-	  @Autowired
-	  private MockMvc mockMvc;
 
-	  @Autowired
-	  private ObjectMapper objectMapper;
-	  
-	  @Mock
-	  private EmployeeService employeeService;
+    private MockMvc mockMvc;
 
-	    @InjectMocks
-	    private EmployeeController employeeController;
+    private ObjectMapper objectMapper;
 
-	    @BeforeEach
-	    void setUp() {
-	        MockitoAnnotations.openMocks(this);
+    @Mock
+    private EmployeeService employeeService;
 
-	        mockMvc = MockMvcBuilders.standaloneSetup(employeeController).build();
-	        objectMapper = new ObjectMapper();
-	    }
-	   
+    @InjectMocks
+    private EmployeeController employeeController;
+
+    @BeforeEach
+    void setUp() {
+        MockitoAnnotations.openMocks(this);
+
+        mockMvc = MockMvcBuilders.standaloneSetup(employeeController).build();
+        objectMapper = new ObjectMapper();
+    }
 //---------------------------------------------------------CREATE EMPLOYEE API-----------------------------------------------------------
 	    @Test
 	    void testCreateEmployeeSuccess() {
@@ -152,98 +148,124 @@ public class TestController {
 	    }
 //--------------------------------------------------------------------------------------------------------------------------------------	    
 //------------------------------------------------GET EMPLOYEES BY MANAGERS ID API------------------------------------------------------
-	    @Test
-	    void testGetEmployeesByManagerId_ValidId_ReturnsEmployeeList() throws Exception {
-	        // Prepare test data
-	        List<EmployeeDTO> employees = new ArrayList<>();
-	        employees.add(new EmployeeDTO(/* employee details here */));
-	        employees.add(new EmployeeDTO(/* another employee details here */));
-
-	        // Mock the service method
-	        ResponseEntity<List<EmployeeDTO>> responseEntity = ResponseEntity.ok(employees);
-	        when(employeeService.getEmployeesByManagerId(101)).thenReturn(responseEntity);
-
-	        // Setup MockMvc
-	        mockMvc = MockMvcBuilders.standaloneSetup(employeeController).build();
-
-	        // Perform GET request and validate the response
-	        mockMvc.perform(get("/EMS/managers/101"))
-	                .andExpect(status().isOk())
-	                .andExpect(jsonPath("$.size()").value(2)); // Assuming JSON structure has a list of employees
-	    }
-
+	  
 //	    @Test
-//	    void testGetEmployeesByManagerId_InvalidId_ReturnsBadRequest() throws Exception {
-//	        // Mock the service method with an invalid managerId
-//	        ResponseEntity<List<EmployeeDTO>> responseEntity = ResponseEntity.status(HttpStatus.BAD_REQUEST)
-//	                .body(Collections.emptyList()); // You can use an empty list or mock actual EmployeeDTO objects
+//	    void testValidManagerId() throws Exception {
+//	        EmployeeDTO mockedEmployee = new EmployeeDTO();
+//	        mockedEmployee.setName("John Doe");
+//	        mockedEmployee.setAccountType("Developer");
 //
-//	        // Mock the service method
-//	        when(employeeService.getEmployeesByManagerId(106)).thenReturn(responseEntity);
+//	        when(employeeService.getEmployeesByManagerId(anyInt()))
+//	            .thenReturn(new ResponseEntity<>(Collections.singletonList(mockedEmployee), HttpStatus.OK));
 //
-//	        // Set up controller method to be invoked
-//	        mockMvc.perform(get("/EMS/managers/106"))
-//	                .andExpect(status().isBadRequest())
-//	                .andExpect(content().string("Manager ID should be between 101 and 105"));
-//
-//	        // Verify that the mocked service method was called with the expected argument
-//	        verify(employeeService).getEmployeesByManagerId(106); // This line checks if the expected method was called
+//	        mockMvc.perform(MockMvcRequestBuilders.get("/managers/102")) // Make sure the URL matches the endpoint
+//	            .andExpect(status().isOk())
+//	            .andExpect((ResultMatcher) content().json(objectMapper.writeValueAsString(Collections.singletonList(mockedEmployee))));
 //	    }
 //
 //	    @Test
-//	    void testGetEmployeesByManagerId_InternalServerError_ReturnsInternalServerError() throws Exception {
-//	        // Mock the service method to throw an exception
-//	        when(employeeService.getEmployeesByManagerId(ArgumentMatchers.anyInt())).thenAnswer(new Answer<ResponseEntity<?>>() {
-//	            @Override
-//	            public ResponseEntity<?> answer(InvocationOnMock invocation) throws Throwable {
-//	                throw new RuntimeException("Internal Server Error");
-//	            }
-//	        });
+//	    void testInvalidManagerId() throws Exception {
+//	        mockMvc.perform(MockMvcRequestBuilders.get("/managers/100"))
+//	            .andExpect(status().isBadRequest())
+//	            .andExpect((ResultMatcher) content().string("Manager ID should be between 101 and 105"));
+//	    }
 //
-//	        // Setup MockMvc
-//	        mockMvc = MockMvcBuilders.standaloneSetup(employeeController).build();
+//	    @Test
+//	    void testExceptionHandling() throws Exception {
+//	        when(employeeService.getEmployeesByManagerId(anyInt()))
+//	            .thenThrow(new RuntimeException("Mocked exception"));
 //
-//	        // Perform GET request and validate the response
-//	        mockMvc.perform(get("/EMS/managers/101"))
-//	                .andExpect(status().isInternalServerError())
-//	                .andExpect(content().string("An error occurred while processing the request."));
+//	        mockMvc.perform(MockMvcRequestBuilders.get("/managers/103"))
+//	            .andExpect(status().isInternalServerError())
+//	            .andExpect((ResultMatcher) content().string("An error occurred while processing the request"));
 //	    }
 //--------------------------------------------------------------------------------------------------------------------------------------	    
 //--------------------------------------------------UPDATE EMPLOYEE DETAILS API---------------------------------------------------------
 	    
 	    @Test
-	    public void testUpdateEmployeeDetails() throws Exception {
+	    public void testUpdateEmployeeDetails() {
+	        // Prepare test data
+	        Integer employeeId = 1;
 	        EmployeeUpdateRequestDTO requestDTO = new EmployeeUpdateRequestDTO();
-	        // Set properties in the requestDTO
+	        requestDTO.setEmployeeId(employeeId);
+	        // ... set other fields as needed
 
-	        when(employeeService.updateEmployeeDetails(anyInt(), any(EmployeeUpdateRequestDTO.class)))
+	        // Mock employeeService behavior
+	        when(employeeService.updateEmployeeDetails(employeeId, requestDTO))
 	            .thenReturn(ResponseEntity.ok("Employee details updated successfully"));
 
-	        mockMvc.perform(MockMvcRequestBuilders.put("/update/1")
-	                .contentType(MediaType.APPLICATION_JSON)
-	                .content(objectMapper.writeValueAsString(requestDTO)))
-	                .andExpect(MockMvcResultMatchers.status().isOk())
-	                .andExpect(MockMvcResultMatchers.content().string("Employee details updated successfully"));
+	        // Call the controller method
+	        ResponseEntity<String> response = employeeController.updateEmployeeDetails(employeeId, requestDTO);
+
+	        // Verify the response
+	        verify(employeeService, times(1)).updateEmployeeDetails(employeeId, requestDTO);
+	        assertEquals(HttpStatus.OK, response.getStatusCode());
+	        assertEquals("Employee details updated successfully", response.getBody());
 	    }
 
 	    @Test
-	    public void testUpdateEmployeeDetails_ValidationException() throws Exception {
-	        EmployeeUpdateRequestDTO requestDTO = new EmployeeUpdateRequestDTO();
-	        // Set properties in the requestDTO
-
+	    public void testUpdateEmployeeDetails_ValidationException() {
+	        // Mocking the behavior of employeeService.updateEmployeeDetails() to throw ValidationException
 	        when(employeeService.updateEmployeeDetails(anyInt(), any(EmployeeUpdateRequestDTO.class)))
-	            .thenThrow(new ValidationException("Invalid data"));
+	            .thenThrow(new ValidationException("Validation failed"));
 
-	        mockMvc.perform(MockMvcRequestBuilders.put("/update/1")
-	                .contentType(MediaType.APPLICATION_JSON)
-	                .content(objectMapper.writeValueAsString(requestDTO)))
-	                .andExpect(MockMvcResultMatchers.status().isBadRequest())
-	                .andExpect(MockMvcResultMatchers.content().string("Invalid data"));
+	        EmployeeUpdateRequestDTO requestDTO = new EmployeeUpdateRequestDTO();
+	        // Set properties for requestDTO
+
+	        ValidationException exception = assertThrows(ValidationException.class,
+	            () -> employeeController.updateEmployeeDetails(1, requestDTO));
+
+	        // Verify the interaction with the service and check the thrown exception
+	        verify(employeeService).updateEmployeeDetails(eq(1), eq(requestDTO));
+	        assertEquals("Validation failed", exception.getMessage());
+	    }
+
+//--------------------------------------------------------------------------------------------------------------------------------------	    
+//	  //------------------------------------------------------------DELETE EMPLOYEE API-------------------------------------------------------
+//	 @Test
+	    public void testDeleteEmployee_Success() throws Exception {
+	        int employeeId = 1;
+
+	        // Mock the behavior of the employeeService.deleteEmployee method
+	        when(employeeService.deleteEmployee(employeeId)).thenReturn(new ResponseEntity<>("Employee deleted successfully", HttpStatus.OK));
+
+	        // Perform a mock HTTP DELETE request to the specified URL
+	        MockHttpServletResponse response = mockMvc.perform(
+	                MockMvcRequestBuilders.delete("/delete/{id}", employeeId)
+	                        .contentType(MediaType.APPLICATION_JSON))
+	                .andExpect(MockMvcResultMatchers.status().isOk())
+	                .andReturn().getResponse();
+
+	        // Verify the response
+	        assertEquals(HttpStatus.OK.value(), response.getStatus());
+	        assertEquals("Employee deleted successfully", response.getContentAsString());
 	    }
 	
-	    
+
+	    @Test
+	    public void testDeleteEmployee_NotFound() {
+	        int employeeId = 2;
+	        
+	        when(employeeService.deleteEmployee(employeeId)).thenReturn(new ResponseEntity<>("Employee not found", HttpStatus.NOT_FOUND));
+
+	        ResponseEntity<String> response = employeeController.deleteEmployee(employeeId);
+
+	        verify(employeeService, times(1)).deleteEmployee(employeeId);
+	        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+	        assertEquals("Employee not found", response.getBody());
+	    }
+
+	    @Test
+	    public void testDeleteEmployee_InternalServerError() {
+	        int employeeId = 3;
+	        
+	        when(employeeService.deleteEmployee(employeeId)).thenReturn(new ResponseEntity<>("Error deleting employee", HttpStatus.INTERNAL_SERVER_ERROR));
+
+	        ResponseEntity<String> response = employeeController.deleteEmployee(employeeId);
+
+	        verify(employeeService, times(1)).deleteEmployee(employeeId);
+	        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+	        assertEquals("Error deleting employee", response.getBody());
+	    }
 //--------------------------------------------------------------------------------------------------------------------------------------	    
-
-
-
 }

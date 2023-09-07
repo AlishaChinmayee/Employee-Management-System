@@ -55,4 +55,19 @@ public class GlobalExceptionHandler {
         );
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(exception);
     }
+    
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<Exception> handleRuntimeException(RuntimeException e) {
+        Exception exception = new Exception(
+                "Failed to create employee account due to an internal server error", // Customize the error message
+                e, // Pass the original exception as the cause
+                HttpStatus.INTERNAL_SERVER_ERROR,
+                ZonedDateTime.now()
+        );
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(exception);
+    }
+    @ExceptionHandler(EmployeeNotFoundException.class)
+    public ResponseEntity<String> handleEmployeeNotFoundException(EmployeeNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    }
 }

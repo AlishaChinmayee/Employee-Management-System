@@ -13,8 +13,17 @@ public class AccountHistoryResponse {
 	    private LocalDateTime dateOfTransaction;
 	    
 		public AccountHistoryResponse() {
+		
 			
 		}
+		
+
+	    public AccountHistoryResponse(Integer employeeId, LocalDateTime dateOfTransaction, String transactionType, Double transactionAmount) {
+	        this.employeeId = employeeId;
+	        this.dateOfTransaction = dateOfTransaction;
+	        this.transactionType = transactionType;
+	        this.transactionAmount = transactionAmount;
+	    }
 
 		public String getTransactionId() {
 			return transactionId;
